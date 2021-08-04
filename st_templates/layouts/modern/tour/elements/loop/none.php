@@ -1,0 +1,1 @@
+<div class="alert alert-warning mt15 none-tour"><?php echo __('Please try broadening your search criteria.', 'traveler'); ?></div>

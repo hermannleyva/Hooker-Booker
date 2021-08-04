@@ -1,0 +1,12 @@
+[08-May-2021 01:43:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php on line 13
+[02-Jun-2021 19:13:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php on line 13
+[09-Jun-2021 16:15:12 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/eabqb0w41rum/public_html/wp-content/themes/traveler/index.php on line 13
