@@ -4116,7 +4116,7 @@ if (!class_exists('STTour')) {
 
             return $data;
 
-	    }
+        }
 
         static function get_price_html( $post_id = false, $get = false, $st_mid = '', $class = '', $hide_title = true )
 
@@ -4212,7 +4212,10 @@ if (!class_exists('STTour')) {
 
                 {$where}";
 
+
             $results = $wpdb->get_results($sql, OBJECT);
+
+
 
             if (TravelHelper::is_wpml()) {
 

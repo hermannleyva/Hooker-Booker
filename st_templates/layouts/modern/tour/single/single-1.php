@@ -100,7 +100,135 @@ while (have_posts()): the_post();
 
         <?php
 
-        if (has_post_thumbnail()) {
+        if (get_post_meta($post_id, 'postImageUrl')) {
+            $imageURL   = get_post_meta($post_id, 'postImageUrl', true);
+            $webURL     = get_site_url();
+            $url = $webURL.'/wp-content/themes/traveler/st_templates/user/postimgs/'.$imageURL;
+
+
+            ?>
+
+            <div class="tour-featured-image featured-image-background"
+
+                 style="background-image: url('<?php echo esc_url($url); ?>')">
+
+                <div class="container">
+
+                    <div class="st-gallery">
+
+                        <div class="shares dropdown">
+
+                            <a href="#" class="share-item social-share">
+
+                                <?php echo TravelHelper::getNewIcon('ico_share', '', '20px', '20px') ?>
+
+                            </a>
+
+                            <ul class="share-wrapper">
+
+                                <li><a class="facebook"
+
+                                       href="https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink() ?>&amp;title=<?php the_title() ?>"
+
+                                       target="_blank" rel="noopener" original-title="Facebook"><i
+
+                                                class="fa fa-facebook fa-lg"></i></a></li>
+
+                                <li><a class="twitter"
+
+                                       href="https://twitter.com/share?url=<?php the_permalink() ?>&amp;title=<?php the_title() ?>"
+
+                                       target="_blank" rel="noopener" original-title="Twitter"><i
+
+                                                class="fa fa-twitter fa-lg"></i></a></li>
+
+                                <li><a class="no-open pinterest"
+
+                                href="http://pinterest.com/pin/create/bookmarklet/?url=<?php the_permalink() ?>&is_video=false&description=<?php the_title() ?>&media=<?php echo get_the_post_thumbnail_url(get_the_ID())?>"
+
+                                       target="_blank" rel="noopener" original-title="Pinterest"><i
+
+                                                class="fa fa-pinterest fa-lg"></i></a></li>
+
+                                <li><a class="linkedin"
+
+                                       href="https://www.linkedin.com/shareArticle?mini=true&amp;url=<?php the_permalink() ?>&amp;title=<?php the_title() ?>"
+
+                                       target="_blank" rel="noopener" original-title="LinkedIn"><i
+
+                                                class="fa fa-linkedin fa-lg"></i></a></li>
+
+                            </ul>
+
+                            <?php echo st()->load_template('layouts/modern/hotel/loop/wishlist'); ?>
+
+                        </div>
+
+                        <div class="btn-group">
+
+                            <?php $video_url = get_post_meta(get_the_ID(), 'video', true);
+
+                            if (!empty($video_url)) {
+
+                                ?>
+
+                                <a href="<?php echo esc_url($video_url); ?>"
+
+                                   class="btn btn-transparent has-icon radius st-video-popup"><?php echo TravelHelper::getNewIcon('video-player', '#FFFFFF', '18px', '18px') ?><?php echo __('Tour Video', 'traveler') ?></a>
+
+                            <?php } ?>
+
+                            <?php
+
+                                if(!empty($gallery)){ ?>
+
+                                    <a href="#st-gallery-popup"
+
+                                        class="btn btn-transparent has-icon radius st-gallery-popup"><?php echo TravelHelper::getNewIcon('camera-retro', '#FFFFFF', '18px', '18px') ?><?php echo __('More Photos', 'traveler') ?></a>
+
+
+
+                                <?php }
+
+                            ?>
+
+
+
+                            <div id="st-gallery-popup" class="hidden">
+
+                                <?php
+
+                                if (!empty($gallery_array)) {
+
+                                    foreach ($gallery_array as $k => $v) {
+
+                                        if(!empty($v)){
+
+                                            echo '<a href="' . wp_get_attachment_image_url($v, 'full') . '">'.__('Image', 'traveler').'</a>';
+
+                                        }
+
+
+
+                                    }
+
+                                }
+
+                                ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        <?php
+
+        } else if (has_post_thumbnail()) {
 
             $url = get_the_post_thumbnail_url($post_id, 'full');
 
@@ -224,7 +352,7 @@ while (have_posts()): the_post();
 
             </div>
 
-        <?php }
+        <?php } 
 
         ?>
 
@@ -302,7 +430,12 @@ while (have_posts()): the_post();
 
                                                 $duration = get_post_meta(get_the_ID(), 'duration_day', true);
 
-                                                echo esc_html($duration.' hours');
+                                                if ($duration == 'full_day') {
+                                                    echo esc_html('Full Day');
+                                                } else {
+                                                    echo esc_html('Half Day');
+                                                }
+                                                
 
                                                 ?>
 
@@ -332,17 +465,21 @@ while (have_posts()): the_post();
 
                                                 <?php
 
+                                                $tripType = get_post_meta(get_the_ID(), 'trip_type', true);
+
+                                                echo __($tripType, 'traveler');
+
                                                 $tour_type = get_post_meta(get_the_ID(), 'type_tour', true);
 
-                                                if ($tour_type == 'daily_tour') {
+                                                // if ($tour_type == 'daily_tour') {
 
-                                                    echo __('Daily Tour', 'traveler');
+                                                //     echo __('Daily Tour', 'traveler');
 
-                                                } else {
+                                                // } else {
 
-                                                    echo __('Fishing Trip', 'traveler');
+                                                //     echo __('Fishing Trip', 'traveler');
 
-                                                }
+                                                // }
 
                                                 ?>
 
@@ -436,7 +573,7 @@ while (have_posts()): the_post();
 
                                                 } else {
 
-                                                    echo '___';
+                                                    echo 'English';
 
                                                 }
 
@@ -1506,7 +1643,8 @@ while (have_posts()): the_post();
 
                         <?php
 
-                        $info_price = STTour::get_info_price();
+                            $info_price = STTour::get_info_price();
+
 
                         ?>
 
@@ -1544,7 +1682,7 @@ while (have_posts()): the_post();
 
                                             <div class="form-head">
 
-                                                <div class="price">
+                                                <div class="price optima">
 
                                                 <span class="label">
 
@@ -1882,7 +2020,7 @@ while (have_posts()): the_post();
 
                                                 <div class="form-head">
 
-                                                    <div class="price">
+                                                    <div class="price optima2">
 
                                                         <span class="label">
 
@@ -1960,7 +2098,17 @@ while (have_posts()): the_post();
 
                                                             <?php
 
-                                                            echo STTour::get_price_html(get_the_ID());
+                                                            if (get_post_meta($post_id, 'base_price')) {
+
+                                                                $metaPrice = get_post_meta($post_id, 'base_price');
+
+                                                                echo '<span class="text-lg lh1em item "> $' . $metaPrice[0] . "</span>";
+
+                                                            } else {
+
+                                                                echo STTour::get_price_html(get_the_ID());
+
+                                                            }
 
                                                             ?>
 
@@ -2424,7 +2572,22 @@ while (have_posts()): the_post();
 
                                                 <?php echo TravelHelper::getNewIcon('time-clock-circle-1', '#5E6D77', '16px', '16px'); ?>
 
-                                                <span class="duration"><?php echo get_post_meta(get_the_ID(), 'duration_day', true); ?></span>
+                                                <span class="duration">
+                                                <?php 
+                                                    $duration = get_post_meta(get_the_ID(), 'duration_day', true);
+                                                     
+                                                    if ($duration == 'full-day') {
+                                                        $duration = 'Full Day';
+                                                    } else if ($duration == 'half-day') {
+                                                        $duration = 'Half Day';
+                                                    } else if ($duration == 'three-quarters-day') {
+                                                        $duration = '3/4 Day';
+                                                    }
+
+                                                    echo $duration;
+
+                                                    ?>
+                                                </span>
 
                                             </div>
 
@@ -2432,9 +2595,13 @@ while (have_posts()): the_post();
 
                                                 <?php echo TravelHelper::getNewIcon('thunder', '#FFAB53', '9px', '16px', false); ?>
 
-                                                <span class="price">
+                                                <span class="price optima4">
 
-                                                                <?php echo sprintf(esc_html__('from %s', 'traveler'), STTour::get_price_html(get_the_ID())); ?>
+                                                                <?php 
+
+                                                                echo sprintf(esc_html__('from %s', 'traveler'), STTour::get_price_html(get_the_ID())); 
+
+                                                                ?>
 
                                                             </span>
 

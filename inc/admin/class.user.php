@@ -28,7 +28,7 @@ if (!class_exists('STUser')) {
 
     {
 
-	    protected static $countComments=[];
+        protected static $countComments=[];
 
 
 
@@ -140,11 +140,11 @@ if (!class_exists('STUser')) {
 
             add_action('wp_ajax_get_user_verifications_info', array($this, '__getUserVerificationsInfo'));
 
-	        add_action('wp_ajax_user_verify_all_info', array($this, '__userVerifyAllnInfo'));
+            add_action('wp_ajax_user_verify_all_info', array($this, '__userVerifyAllnInfo'));
 
-	        add_action('wp_ajax_user_verify_each_info', array($this, '__userVerifyEachInfo'));
+            add_action('wp_ajax_user_verify_each_info', array($this, '__userVerifyEachInfo'));
 
-	        add_action('wp_ajax_user_deny_each_info', array($this, '__userDenyEachInfo'));
+            add_action('wp_ajax_user_deny_each_info', array($this, '__userDenyEachInfo'));
 
 
 
@@ -420,51 +420,51 @@ if (!class_exists('STUser')) {
 
         public function __userDenyEachInfo(){
 
-	        if(!is_user_logged_in()) return;
+            if(!is_user_logged_in()) return;
 
-	        $user_id = STInput::post('user_id');
+            $user_id = STInput::post('user_id');
 
-	        $criteria = STInput::post('criteria');
+            $criteria = STInput::post('criteria');
 
-	        $notice = STInput::post('notice');
-
-
-
-	        if(empty($user_id) || empty($criteria)) return;
+            $notice = STInput::post('notice');
 
 
 
-	        st_update_user_verify($criteria, $user_id, '0');
+            if(empty($user_id) || empty($criteria)) return;
 
 
 
-	        $arr_old_notice = get_user_meta($user_id, 'admin_verify_notes', true);
-
-	        if(empty($arr_old_notice))
-
-	        	$arr_old_notice = array();
-
-	        $arr_old_notice[$criteria] = $notice;
-
-	        $res = update_user_meta($user_id, 'admin_verify_notes', $arr_old_notice);
+            st_update_user_verify($criteria, $user_id, '0');
 
 
 
-	        if($res){
+            $arr_old_notice = get_user_meta($user_id, 'admin_verify_notes', true);
 
-		        $status = STUser::verify_status($user_id)['value'];
+            if(empty($arr_old_notice))
 
-		        $data = ['status' => 1, 'verify_info' => $status];
+                $arr_old_notice = array();
 
-		        wp_send_json($data);
+            $arr_old_notice[$criteria] = $notice;
 
-	        }else{
+            $res = update_user_meta($user_id, 'admin_verify_notes', $arr_old_notice);
 
-		        $data = ['status' => 0];
 
-		        wp_send_json($data);
 
-	        }
+            if($res){
+
+                $status = STUser::verify_status($user_id)['value'];
+
+                $data = ['status' => 1, 'verify_info' => $status];
+
+                wp_send_json($data);
+
+            }else{
+
+                $data = ['status' => 0];
+
+                wp_send_json($data);
+
+            }
 
         }
 
@@ -472,47 +472,69 @@ if (!class_exists('STUser')) {
 
         public function __userVerifyEachInfo(){
 
-	        if(!is_user_logged_in()) return;
+            if(!is_user_logged_in()) return;
 
-	        $user_id = STInput::post('user_id');
+            $user_id = STInput::post('user_id');
 
-	        $criteria = STInput::post('criteria');
+            $criteria = STInput::post('criteria');
 
+            $CLnotes = STInput::post('CLnotes');
 
-
-	        if(empty($user_id) || empty($criteria)) return;
-
-
-
-	        st_update_user_verify( $criteria, $user_id, 1 );
-
-	        $arr_notice = get_user_meta($user_id, 'admin_verify_notes', true);
+            $BInotes = STInput::post('BInotes');
 
 
+            if(empty($user_id) || empty($criteria)) return;
 
-	        if(empty($arr_notice))
+            //optima - 1.0 enhancement
+            if ($criteria == 'passport') {
+                update_user_meta($user_id, 'captainLicenseStatus', 3);
+            }
 
-		        $arr_notice = array();
+            if ($criteria == 'travel_certificate') {
+                update_user_meta($user_id, 'boatInsuranceStatus', 3);
+            }
 
+            if ($criteria == '_deny') {
+                update_user_meta($user_id, 'captainLicenseStatus', 2);
+                update_user_meta($user_id, 'captainLicenseNotes', $CLnotes);
+            }
 
-
-	        if(isset($arr_notice[$criteria])){
-
-	            unset($arr_notice[$criteria]);
-
-	            update_user_meta($user_id, 'admin_verify_notes', $arr_notice);
-
-	        }
-
-
-
-	        $status = STUser::verify_status($user_id)['value'];
+            if ($criteria == '_denyBI') {
+                update_user_meta($user_id, 'boatInsuranceStatus', 2);
+                update_user_meta($user_id, 'boatInsuranceNotes', $BInotes);
+            }
 
 
 
-	        $data = ['status' => 1, 'verify_info' => $status];
+            // st_update_user_verify( $criteria, $user_id, 1 );
 
-	        wp_send_json($data);
+            $arr_notice = get_user_meta($user_id, 'admin_verify_notes', true);
+
+
+
+            if(empty($arr_notice))
+
+                $arr_notice = array();
+
+
+
+            if(isset($arr_notice[$criteria])){
+
+                unset($arr_notice[$criteria]);
+
+                update_user_meta($user_id, 'admin_verify_notes', $arr_notice);
+
+            }
+
+
+
+            $status = STUser::verify_status($user_id)['value'];
+
+
+
+            $data = ['status' => 1, 'verify_info' => $status];
+
+            wp_send_json($data);
 
         }
 
@@ -520,203 +542,260 @@ if (!class_exists('STUser')) {
 
         public function __userVerifyAllnInfo(){
 
-	        check_ajax_referer('user_verifications', 'security');
+            check_ajax_referer('user_verifications', 'security');
 
-	        if(!is_user_logged_in()) return;
+            if(!is_user_logged_in()) return;
 
-	        $user_id = STInput::post('user_id');
+            $user_id = STInput::post('user_id');
 
-	        if(empty($user_id)) return;
+            if(empty($user_id)) return;
 
-	        st_update_user_verify( '', $user_id, 1 );
+            st_update_user_verify( '', $user_id, 1 );
 
-	        update_user_meta($user_id, 'admin_verify_notes', array());
+            update_user_meta($user_id, 'admin_verify_notes', array());
 
-	        $data = [ 'status' => 1];
+            $data = [ 'status' => 1];
 
-	        echo json_encode($data);die;
+            echo json_encode($data);die;
 
         }
 
 
 
-	    public static function verify_status_by_key($user_id, $verify_key, $icon = false){
+        public static function verify_status_by_key($user_id, $verify_key, $icon = false){
 
-		    $verify_status = st_check_user_verify($verify_key, $user_id);
+            $verify_status = st_check_user_verify($verify_key, $user_id);
 
-		    if($verify_status) {
+            if($verify_status) {
 
-			    if ( $icon ) {
+                if ( $icon ) {
 
-				    return '<div class="verify-status-item icon all"><span class="dashicons dashicons-yes"></span><span class="dashicons dashicons-minus"></span></div>';
+                    return '<div class="verify-status-item icon all"><span class="dashicons dashicons-yes"></span><span class="dashicons dashicons-minus"></span></div>';
 
-			    } else {
+                } else {
 
-				    return '<span class="verify-status-item all">' . __( 'Verified', 'traveler' ) . '</span>';
+                    return '<span class="verify-status-item all">' . __( 'Verified', 'traveler' ) . '</span>';
 
-			    }
+                }
 
-		    }else{
+            }else{
 
-			    if($icon){
+                if($icon){
 
-				    return '<div class="verify-status-item icon none"><span class="dashicons dashicons-yes"></span><span class="dashicons dashicons-minus"></span></div>';
+                    return '<div class="verify-status-item icon none"><span class="dashicons dashicons-yes"></span><span class="dashicons dashicons-minus"></span></div>';
 
-			    }else{
+                }else{
 
-				    return '<span class="verify-status-item none">' . __('Not Verified', 'traveler') . '</span>';
+                    return '<span class="verify-status-item none">' . __('Not Verified', 'traveler') . '</span>';
 
-			    }
+                }
 
-		    }
-
-
-
-	    }
+            }
 
 
 
-	    public static function verify_status($user_id){
-
-		    $st_verify_email = st_check_user_verify('email', $user_id);
-
-		    $st_verify_phone = st_check_user_verify('phone', $user_id);
-
-		    $st_verify_passport = st_check_user_verify('passport', $user_id);
-
-		    $st_verify_cer = st_check_user_verify('travel_certificate', $user_id);
-
-		    $st_verify_social = st_check_user_verify('social', $user_id);
+        }
 
 
 
-		    $count = 0;
-
-		    if(!empty($st_verify_phone) && $st_verify_phone == 1)
-
-			    $count++;
-
-		    if(!empty($st_verify_passport) && $st_verify_passport == 1)
-
-			    $count++;
-
-		    if(!empty($st_verify_email) && $st_verify_email == 1)
-
-			    $count++;
-
-		    if(!empty($st_verify_cer) && $st_verify_cer == 1)
-
-			    $count++;
-
-		    if(!empty($st_verify_social) && $st_verify_social == 1)
-
-			    $count++;
 
 
+        public static function verify_status($user_id){
 
-		    $count_c = 5;
+            //get the status #
+            $captainLicenseStatus = get_user_meta($user_id,'captainLicenseStatus', true);
+            $boatInsuranceStatus = get_user_meta($user_id, 'boatInsuranceStatus',true);
+
+            if (!$captainLicenseStatus) {
+                $captainLicenseStatus = 0;
+            }
+
+            if (!$boatInsuranceStatus) {
+                $boatInsuranceStatus = 0;
+            }
+
+            $total = $captainLicenseStatus + $boatInsuranceStatus;
+
+            //if any of the status are in submitted pending, that takes precedent.
+            if ($captainLicenseStatus == 1 || $boatInsuranceStatus == 1) {
+                return [
+                    'value' => 'review',
+                    'html' => '<span class="verify-status apart">Pending Review</span>'
+                ];
+            } else if ($total == 0) {
+                return [
+                    'value' => 'none',
+                    'html' => '<span class="verify-status none">Not Submitted</span>'
+                ];
+
+            }  else if ($captainLicenseStatus == 2 || $boatInsuranceStatus == 2) {
+                return [
+                    'value' => 'resub',
+                    'html' => '<span class="verify-status none">Captain Needs to Resubmit</span>'
+                ];
+
+            }
+             else if ($captainLicenseStatus == 3 && $boatInsuranceStatus != 3) {
+                return [
+                    'value' => 'apart',
+                    'html' => '<span class="verify-status half">Half Verified</span>'
+                ];
+            } else if ($total == 6) {
+                return [
+                    'value' => 'Verified',
+                    'html' => '<span class="verify-status all">Verified</span>'
+                ];
+
+            } else {
+                return [
+                    'value' => 'Unknown',
+                    'html' => '<span class="verify-status none">Unknown</span>'
+                ];
+            }
 
 
 
-		    if($count >= $count_c){
 
-			    return [
 
-				    'value' => 'verified',
 
-				    'html' => '<span class="verify-status all">' . __('Verified', 'traveler') . '</span>'
+            // $st_verify_email = st_check_user_verify('email', $user_id);
 
-			    ];
+            // $st_verify_phone = st_check_user_verify('phone', $user_id);
 
-		    }
+            // $st_verify_passport = st_check_user_verify('passport', $user_id);
 
-		    if($count > 0 && $count < $count_c){
+            // $st_verify_cer = st_check_user_verify('travel_certificate', $user_id);
 
-			    return [
+            // $st_verify_social = st_check_user_verify('social', $user_id);
 
-				    'value' => 'apart',
 
-				    'html' => '<span class="verify-status apart">' . __('A Part', 'traveler') . '</span>'
+            // $count = 0;
 
-			    ];
+            // if(!empty($st_verify_phone) && $st_verify_phone == 1)
 
-		    }
+               //  $count++;
 
-		    if($count == 0){
+            // if(!empty($st_verify_passport) && $st_verify_passport == 1)
 
-			    return [
+               //  $count++;
 
-				    'value' => 'none',
+            // if(!empty($st_verify_email) && $st_verify_email == 1)
 
-				    'html' => '<span class="verify-status none">' . __('Not Verified', 'traveler') . '</span>'
+               //  $count++;
 
-			    ];
+            // if(!empty($st_verify_cer) && $st_verify_cer == 1)
 
-		    }
+               //  $count++;
 
-	    }
+            // if(!empty($st_verify_social) && $st_verify_social == 1)
+
+               //  $count++;
+
+
+
+            // $count_c = 2;
+
+
+
+            // if($count >= $count_c){
+
+               //  return [
+
+                  //   'value' => 'verified',
+
+                  //   'html' => '<span class="verify-status all">' . __('Verified', 'traveler') . '</span>'
+
+               //  ];
+
+            // }
+
+            // if($count > 0 && $count < $count_c){
+
+               //  return [
+
+                  //   'value' => 'apart',
+
+                  //   'html' => '<span class="verify-status apart">' . __('A Part', 'traveler') . '</span>'
+
+               //  ];
+
+            // }
+
+            // if($count == 0){
+
+               //  return [
+
+                  //   'value' => 'none',
+
+                  //   'html' => '<span class="verify-status none">' . __('Not Verified', 'traveler') . '</span>'
+
+               //  ];
+
+            // }
+
+        }
 
 
 
         public function __getUserVerificationsInfo(){
 
-	        check_ajax_referer('user_verifications', 'security');
+            check_ajax_referer('user_verifications', 'security');
 
-	        if(!is_user_logged_in()) return;
+            if(!is_user_logged_in()) return;
 
-	        $user_id = STInput::post('user_id');
+            $user_id = STInput::post('user_id');
 
-	        $user_info = get_userdata($user_id);
-
-
-
-	        $model = [
-
-		        'user_email' => $user_info->user_email,
-
-		        'st_phone'       => get_user_meta($user_id, 'st_phone', true ),
-
-	            'passport_name' => get_user_meta( $user_id, 'passport_name', true ),
-
-		        'passport_id' => get_user_meta( $user_id, 'passport_id', true ),
-
-		        'passport_birthday' => get_user_meta( $user_id, 'passport_birthday', true ),
-
-		        'passport_photos' => get_user_meta( $user_id, 'passport_photos', true ),
-
-	            'business_c_name' => get_user_meta( $user_id, 'business_c_name', true ),
-
-		        'business_c_email' => get_user_meta( $user_id, 'business_c_email', true ),
-
-		        'business_c_address' => get_user_meta( $user_id, 'business_c_address', true ),
-
-		        'business_c_phone' => get_user_meta( $user_id, 'business_c_phone', true ),
-
-		        'business_r_name' => get_user_meta( $user_id, 'business_r_name', true ),
-
-		        'business_r_position' => get_user_meta( $user_id, 'business_r_position', true ),
-
-		        'business_r_passport_id' => get_user_meta( $user_id, 'business_r_passport_id', true ),
-
-		        'business_r_issue_date' => get_user_meta( $user_id, 'business_r_issue_date', true ),
-
-		        'social_facebook_uid' => get_user_meta( $user_id, 'social_facebook_uid', true ),
-
-		        'social_facebook_name' => get_user_meta( $user_id, 'social_facebook_name', true ),
-
-		        'business_photos' => get_user_meta( $user_id, 'business_photos', true ),
-
-		        'user_id' => $user_id
-
-	        ];
+            $user_info = get_userdata($user_id);
 
 
 
-	        $html = st()->load_template('user/verify/info', '', array('data' => $model));
+            $model = [
 
-	        $data = [ 'status' => 1, 'htmlData' => $html ];
+                'user_email' => $user_info->user_email,
 
-	        echo json_encode($data);die;
+                'st_phone'       => get_user_meta($user_id, 'st_phone', true ),
+
+                'passport_name' => get_user_meta( $user_id, 'passport_name', true ),
+
+                'passport_id' => get_user_meta( $user_id, 'passport_id', true ),
+
+                'passport_birthday' => get_user_meta( $user_id, 'passport_birthday', true ),
+
+                'passport_photos' => get_user_meta( $user_id, 'passport_photos', true ),
+
+                'business_c_name' => get_user_meta( $user_id, 'business_c_name', true ),
+
+                'business_c_email' => get_user_meta( $user_id, 'business_c_email', true ),
+
+                'business_c_address' => get_user_meta( $user_id, 'business_c_address', true ),
+
+                'business_c_phone' => get_user_meta( $user_id, 'business_c_phone', true ),
+
+                'business_r_name' => get_user_meta( $user_id, 'business_r_name', true ),
+
+                'business_r_position' => get_user_meta( $user_id, 'business_r_position', true ),
+
+                'business_r_passport_id' => get_user_meta( $user_id, 'business_r_passport_id', true ),
+
+                'business_r_issue_date' => get_user_meta( $user_id, 'business_r_issue_date', true ),
+
+                'social_facebook_uid' => get_user_meta( $user_id, 'social_facebook_uid', true ),
+
+                'social_facebook_name' => get_user_meta( $user_id, 'social_facebook_name', true ),
+
+                'business_photos' => get_user_meta( $user_id, 'business_photos', true ),
+
+                'user_id' => $user_id
+
+            ];
+
+
+
+            $html = st()->load_template('user/verify/info', '', array('data' => $model));
+
+            $data = [ 'status' => 1, 'htmlData' => $html ];
+
+            echo json_encode($data);die;
 
         }
 
@@ -998,7 +1077,7 @@ if (!class_exists('STUser')) {
 
 
 
-	        wp_enqueue_script('verify.js', get_template_directory_uri() . '/js/admin/verify.js', ['jquery'], null, true);
+            wp_enqueue_script('verify.js', get_template_directory_uri() . '/js/admin/verify.js', ['jquery'], null, true);
 
 
 
@@ -2014,7 +2093,7 @@ if (!class_exists('STUser')) {
 
                 $email_to = st()->get_option('email_for_partner_expired_date', '');
 
-	            $message .= TravelHelper::_get_template_email($message, $email_to);
+                $message .= TravelHelper::_get_template_email($message, $email_to);
 
                 $message .= st()->load_template('email/footer');
 
@@ -2546,7 +2625,7 @@ if (!class_exists('STUser')) {
 
             if ($email) {
 
-	            if(array_key_exists($email,self::$countComments)) return self::$countComments[$email];
+                if(array_key_exists($email,self::$countComments)) return self::$countComments[$email];
 
                 global $wpdb;
 
@@ -2576,7 +2655,7 @@ if (!class_exists('STUser')) {
 
                 $count = $wpdb->get_var($query);
 
-	            self::$countComments[$email]=$count;
+                self::$countComments[$email]=$count;
 
                 return $count;
 
@@ -2702,11 +2781,11 @@ if (!class_exists('STUser')) {
 
                                 $price = "
 
-                                	" . __("Adult Price", 'traveler') . ": {$adult_price} <br>
+                                    " . __("Adult Price", 'traveler') . ": {$adult_price} <br>
 
-                                	" . __("Child Price", 'traveler') . ": {$child_price} <br>
+                                    " . __("Child Price", 'traveler') . ": {$child_price} <br>
 
-                                	" . __("Infant Price", 'traveler') . ": {$infant_price}";
+                                    " . __("Infant Price", 'traveler') . ": {$infant_price}";
 
                                 break;
 
@@ -2728,11 +2807,11 @@ if (!class_exists('STUser')) {
 
                                 $price = "
 
-                                	" . __("Adult Price", 'traveler') . ": {$adult_price} <br>
+                                    " . __("Adult Price", 'traveler') . ": {$adult_price} <br>
 
-                                	" . __("Child Price", 'traveler') . ": {$child_price} <br>
+                                    " . __("Child Price", 'traveler') . ": {$child_price} <br>
 
-                                	" . __("Infant Price", 'traveler') . ": {$infant_price}";
+                                    " . __("Infant Price", 'traveler') . ": {$infant_price}";
 
                                 break;
 

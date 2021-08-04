@@ -1,3 +1,7 @@
+.booked {
+    color: green;
+}
+
 .booking-item-old-price, .onsale {
     text-decoration: line-through
 }

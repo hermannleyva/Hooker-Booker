@@ -440,13 +440,15 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                                 <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_dashboard.svg";?>" alt="" class="st-icon-menu">
 
-                                <span><?php _e("Dashboard", 'traveler') ?></span>
+                                <?php //OPTIMA - 1.0 ENHANCEMENT ?>
+                                <span><?php _e("Captain's Home", 'traveler') ?></span>
+                                <?php //OPTIMA - 1.0 ENHANCEMENT ?>
 
                                 <span class="badge fa fa-angle-down badge-warning"></span>
 
                             </a>
 
-                            <div class="sidebar-submenu">
+                            <div class="">
 
                                 <ul>
 
@@ -490,15 +492,89 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                                     <?php endif;?>
 
-                                    <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
+
+
+<?php //OPTIMA - 1.0 ENHANCEMENT ?>
+
+
+
+
+
+
+<!--                                     <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
 
                                         <li class="<?php if ($sc == 'dashboard-info' and STInput::request('type') == 'st_tours') echo 'active' ?>">
 
-                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'dashboard-info')); ?>"><?php _e('Trip Statistics','traveler');?></a>
+                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'dashboard-info')); ?>"><?php _e('Dashboard','traveler');?></a>
+
+                                        </li>
+
+                                    <?php endif;?> -->
+
+                                    <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
+
+                                        <li class="<?php if ($sc == 'verifications' and STInput::request('type') == 'st_tours') echo 'active' ?>">
+
+                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'verifications')); ?>">
+                                                <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_wishlish.svg";?>" alt="" class="st-icon-menu">
+                                                <?php _e('Verifications','traveler');?></a>
 
                                         </li>
 
                                     <?php endif;?>
+
+                                    <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
+
+                                        <li class="<?php if ($sc == 'availability' and STInput::request('type') == 'st_tours') echo 'active' ?>">
+
+                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'availability')); ?>">
+                                                 <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_booking_his.svg";?>" alt="" class="st-icon-menu">
+                                                 <?php _e('Availability','traveler');?></a>
+
+                                        </li>
+
+                                    <?php endif;?>
+
+                                    <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
+
+                                        <li class="<?php if ($sc == 'fishing-trip' and STInput::request('type') == 'st_tours') echo 'active' ?>">
+
+                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'fishing-trip')); ?>">
+                                                <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_tour.png";?>" alt="" class="st-icon-menu">
+                                                <?php _e('Offer a Fishing Trip','traveler');?></a>
+
+                                        </li>
+
+                                    <?php endif;?>
+
+
+                        <li class="<?php if ($sc == 'setting') echo 'active' ?>">
+
+                            <a href="<?php echo esc_url(TravelHelper::get_user_dashboared_link($user_link, 'setting')) ?>">
+
+                                <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_seting.svg";?>" alt="" class="st-icon-menu">
+
+                                <span><?php _e("Account Settings", 'traveler') ?></span>
+
+                            </a>
+
+                        </li>
+
+<!--                                     <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
+
+                                        <li class="<?php if ($sc == 'profile' and STInput::request('type') == 'st_tours') echo 'active' ?>">
+
+                                            <a href="<?php echo add_query_arg('type', 'st_tours', TravelHelper::get_user_dashboared_link($user_link, 'profile')); ?>"><?php _e('Profile','traveler');?></a>
+
+                                        </li>
+
+                                    <?php endif;?> -->
+
+
+
+<?php //OPTIMA - 1.0 ENHANCEMENT ?>
+
+
 
                                     <?php if (STUser_f::_check_service_available_partner('st_activity')): ?>
 
@@ -517,7 +593,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
                         </li>
 
                         <?php endif ?>
-
+<!-- 
                         <li class="<?php if ($sc == 'setting') echo 'active' ?>">
 
                             <a href="<?php echo esc_url(TravelHelper::get_user_dashboared_link($user_link, 'setting')) ?>">
@@ -528,7 +604,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                             </a>
 
-                        </li>
+                        </li> -->
 
                         <?php
 
@@ -572,7 +648,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                         </li> -->
 
-                        <li class="<?php if ($sc == 'inbox') echo 'active' ?>">
+<!--                         <li class="<?php if ($sc == 'inbox') echo 'active' ?>">
 
                             <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'inbox'); ?>">
 
@@ -582,7 +658,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                             </a>
 
-                        </li>
+                        </li> -->
 
 
 
@@ -730,67 +806,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                             <?php endif;?>
 
-                            <?php if (STUser_f::_check_service_available_partner('st_tours')): ?>
-
-                                <li class="sidebar-dropdown st-active <?php if (in_array($sc, array('my-tours','create-tours', 'add-tour-booking', 'booking-tours'))){echo 'active';}  ?>">
-
-                                    <a href="#">
-
-                                        <img src="<?php echo get_template_directory_uri()."/v2/images/dashboard/ico_tour.svg";?>" alt="" class="st-icon-menu">
-
-                                        <span><?php _e("Fishing Trips", 'traveler') ?></span>
-
-                                    </a>
-
-                                    <div class="sidebar-submenu">
-
-                                        <ul>
-
-                                            <li <?php if ($sc == 'my-tours')
-
-                                                echo 'class="active"' ?>>
-
-                                                <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'my-tours'); ?>"><?php _e("View/Edit my Trips", 'traveler') ?> <span class="badge fa fa-angle-down badge-success"></span></a>
-
-                                            </li>
-
-                                            <li <?php if ($sc == 'create-tours')
-
-                                                echo 'class="active"' ?>>
-
-                                                <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'create-tours'); ?>"><?php esc_html_e('Add new trip','traveler') ?>
-
-                                                </a>
-
-                                            </li>
-
-<!--                                             <li <?php if ($sc == 'add-tour-booking')
-
-                                                echo 'class="active"' ?>>
-
-                                                <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'add-tour-booking'); ?>"><?php _e("Add manual booking", 'traveler') ?>
-
-                                                </a>
-
-                                            </li> -->
-
-                                            <li <?php if ($sc == 'booking-tours')
-
-                                                echo 'class="active"' ?>>
-
-                                                <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'booking-tours'); ?>"><?php _e("Booking Activity", 'traveler') ?>
-
-                                                </a>
-
-                                            </li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </li>
-
-                            <?php endif;?>
+                           
 
                             <?php if (STUser_f::_check_service_available_partner('st_activity')): ?>
 
@@ -1070,7 +1086,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                             <?php if (is_super_admin()): ?>
 
-                            <li class="<?php if (in_array($sc, array('list-refund'))) echo "active" ?>">
+<!--                             <li class="<?php if (in_array($sc, array('list-refund'))) echo "active" ?>">
 
                                 <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'list-refund'); ?>">
 
@@ -1080,7 +1096,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                                 </a>
 
-                            </li>
+                            </li> -->
 
                         <?php endif;?>
 
@@ -1088,7 +1104,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                         <?php if(st_user_has_partner_features()){?>
 
-<!--                             <li class="<?php if (in_array($sc, array('verify_user'))) echo "active" ?>">
+<!--                              <li class="<?php if (in_array($sc, array('verify_user'))) echo "active" ?>">
 
                                 <a href="<?php echo TravelHelper::get_user_dashboared_link($user_link, 'verify_user'); ?>">
 
@@ -1098,7 +1114,7 @@ if(in_array(STInput::get('sc'),$hide_menu_ins))
 
                                 </a>
 
-                            </li> -->
+                            </li>  -->
 
                         <?php }?>
 
