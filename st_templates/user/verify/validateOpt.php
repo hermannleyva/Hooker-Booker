@@ -114,7 +114,7 @@
 		$cleanTripType = "Fresh Water";
 	} else if ($tripType == "salt-water-trips") {
 		$cleanTripType = "Salt Water";
-	} else if ($tripTYpe == "back-country-trips"){
+	} else if ($tripType == "back-country-trips"){
 		$cleanTripType = "Back Country Fishing";
 	}	
 
