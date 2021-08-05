@@ -66,8 +66,6 @@ foreach ($days as $day) {
 
     $post_type = 'st_tours';
 
-    echo $_SERVER['DOCUMENT_ROOT'];
-
 ?>
 
 <span class="hidden st_partner_avaiablity edit-tours"></span>
