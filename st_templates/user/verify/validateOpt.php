@@ -4,7 +4,7 @@
 
 	
 
-	if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www') {
+	if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT' == '') {
 		require_once $_SERVER['DOCUMENT_ROOT'].'/hookerbooker/wp-load.php';
 	} else {
 		require_once $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';
