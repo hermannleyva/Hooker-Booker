@@ -439,7 +439,7 @@
 	$allowed = array('gif', 'png', 'jpg', 'jpeg');
 	$ext = strval(strtolower(pathinfo($filename, PATHINFO_EXTENSION)));
 	
-	if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www') {
+	if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT' == '/home/oun3sjtyi7cs/public_html') {
 		$folder = $_SERVER['DOCUMENT_ROOT'] . '/hookerbooker/wp-content/themes/traveler/st_templates/user/postimgs/' . $randomString .'.'.$ext;
 	} else {
 		$folder = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/traveler/st_templates/user/postimgs/' . $randomString .'.'.$ext;
