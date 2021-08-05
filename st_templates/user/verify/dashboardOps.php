@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT' == '/home/oun3sjtyi7cs/public_html') {
+if ($_SERVER['DOCUMENT_ROOT'] == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT'] == '/home/oun3sjtyi7cs/public_html') {
 	require_once $_SERVER['DOCUMENT_ROOT'].'/hookerbooker/wp-load.php';
 } else {
 	require_once $_SERVER['DOCUMENT_ROOT'].'/wp-load.php';

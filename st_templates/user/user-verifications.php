@@ -41,7 +41,7 @@ function processBoth($user_id) {
 	    $allowed = array('gif', 'png', 'jpg', 'jpeg');
 		$ext = strval(strtolower(pathinfo($filenameLicense, PATHINFO_EXTENSION)));
 
-		if ($server_root == 'C:/wamp64/www' ||  $_SERVER['DOCUMENT_ROOT' == '/home/oun3sjtyi7cs/public_html') {
+		if ($server_root == 'C:/wamp64/www' ||  $_SERVER['DOCUMENT_ROOT'] == '/home/oun3sjtyi7cs/public_html') {
 			 $folderLicense = $_SERVER['DOCUMENT_ROOT'] . '/hookerbooker/wp-content/themes/traveler/st_templates/user/verifs/' . $randomStringLicense .'.'.$ext;
 		} else {
 			$folderLicense = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/traveler/st_templates/user/verifs/' . $randomStringLicense .'.'.$ext;
@@ -89,7 +89,7 @@ function processBoth($user_id) {
 	    $allowed = array('gif', 'png', 'jpg', 'jpeg');
 		$ext = strval(strtolower(pathinfo($filenameInsurance, PATHINFO_EXTENSION)));
 
-		if ($server_root == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT' == '/home/oun3sjtyi7cs/public_html') {
+		if ($server_root == 'C:/wamp64/www' || $_SERVER['DOCUMENT_ROOT'] == '/home/oun3sjtyi7cs/public_html') {
 			 $folderInsurance = $_SERVER['DOCUMENT_ROOT'] . '/hookerbooker/wp-content/themes/traveler/st_templates/user/verifs/' . $randomStringInsurance .'.'.$ext;
 		} else {
 			$folderInsurance = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/traveler/st_templates/user/verifs/' . $randomStringInsurance .'.'.$ext;
