@@ -259,7 +259,7 @@ function findActiveFishingTrips($user_id) {
 
                             <br>
 
-                            <div style="position: absolute; right: 0px; bottom: 0px; padding: 10px;">
+                            <div style="position: absolute; right: 0px; bottom: 0px;">
                                 <input type="hidden" name="postID" id="postID" value="'.$postID.'">
 
 
@@ -381,7 +381,7 @@ function findInactiveFishingTrips($user_id) {
 
                             <br>
 
-                            <div style="position: absolute; right: 0px; bottom: 0px; padding: 10px;">
+                            <div style="position: absolute; right: 0px; bottom: 0px;">
                                 <input type="hidden" name="postID" id="postID" value="'.$postID.'">
 
                                 <a href="'.$webURL.'/page-user-setting/?sc=edit-trip&id='.$postID.'" class="btn btn-primary">Edit</a>
