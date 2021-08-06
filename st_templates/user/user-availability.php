@@ -29,21 +29,18 @@ global $wpdb;
 
 date_default_timezone_set('America/New_York');
 
+$post_id = 9475;
+$post_type = 'st_tours';
+
+
 //OPTIMA - AVAILABILITY DEFAULT DATE FIX
 //OPTIMA - 1.0 ENHANCEMENT AVAILABILITY
 $counter = 0;
 $wpuser = get_current_user_id();
 
-
-
-
-
-
 $currentDate = date("Y-m-d");
 $currentDateUnix = strtotime($currentDate);
 $minusOneDay = date("Y-m-d", strtotime($currentDate .'-1 day'));
-
-
 
 $expMonths = 6;
 $expiring = strtotime('+'.$expMonths.' month'); 
@@ -55,16 +52,14 @@ foreach ($days as $day) {
 	$counter++;
 }
 
-	
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+}	
 
-?>
-	
 
-<?php
 
-    $post_id = 9475;
 
-    $post_type = 'st_tours';
+
 
 ?>
 
@@ -127,16 +122,25 @@ foreach ($days as $day) {
 
             <div class="row">	
 
-            	<div class="col-xs-6">
+            	<div class="col-lg-6">
 
             		<h1>Availability</h1>
             		<p>This availability will be used across <strong>all</strong> of your offered fishing trips.</p>
+
+                    <?php 
+
+                        if(isMobile()){
+                            echo '<p style="color:red;">The below calendar may not work on mobile devices.  If you are having issues, please visit this page on your computer.  We are working to resolve this problem with mobile in the near future.  Apologies for any inconvenience.</p>';
+                        }
+
+
+                    ?>
 
             		<br>
 
             	</div>
 
-            	<div class="col-xs-6">
+            	<div class="col-lg-6">
 
 
             		
@@ -162,7 +166,7 @@ foreach ($days as $day) {
 
             <div class="row">
 
-                <div class="col-xs-3">
+                <div class="col-lg-3">
 
            		 <p><strong>Step 1:</strong> I want to set a day or days as...</p>
 

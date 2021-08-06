@@ -185,7 +185,11 @@ function findActiveFishingTrips($user_id) {
     $query = $wpdb->prepare("SELECT `id`,`post_title`,`post_status` FROM `wp_posts` WHERE `post_author` = %d AND `post_type` = 'st_tours' AND `post_status` = 'publish'", $user_id);
     $posts = $wpdb->get_results($query, ARRAY_A);
 
-    $results = '';
+    $results = '<br>';
+
+    if (!$posts) {
+        $results .= '<p>You have no active trips.<p>';
+    }
 
     foreach ($posts as $post) {
 
@@ -259,19 +263,13 @@ function findActiveFishingTrips($user_id) {
                                 <input type="hidden" name="postID" id="postID" value="'.$postID.'">
 
 
-                                <a stlye="padding: 10px;" href="'.$webURL.'/page-user-setting/?sc=edit-trip&id='.$postID.'"><img src="'.get_site_url().'/wp-content/themes/traveler/img/icons/edit_ico.png" alt="" class="st-icon-menu"> Edit</a>
+                                <a class="btn btn-primary" href="'.$webURL.'/page-user-setting/?sc=edit-trip&id='.$postID.'">Edit</a>
+                                                                 
+                                <a class="btnDelete btn btn-primary">Delete</a>
 
-                                
-                                          
-                                <a style="padding: 10px;" href="#" class="btnDelete"><img src="'.get_site_url().'/wp-content/themes/traveler/img/icons/trash_ico.png" alt="" class="st-icon-menu"> Delete</a>
-
-
-
-                                <a style="padding: 10px;" href="#" class="btnDeactivate"><img height=25px width=25px src="'.get_site_url().'/wp-content/themes/traveler/img/icons/zzz.png" alt="" class="st-icon-menu"> Deactivate</a>
+                                <a class="btnDeactivate btn btn-primary">Deactivate</a>
 
                             </div>
-                            <br>
-                            <hr>
                         </div>
                     </div><!-- main div -->
                     <br>';
@@ -320,7 +318,11 @@ function findInactiveFishingTrips($user_id) {
     $query = $wpdb->prepare("SELECT `id`,`post_title`,`post_status` FROM `wp_posts` WHERE `post_author` = %d AND `post_type` = 'st_tours' AND `post_status` = 'draft'", $user_id);
     $posts = $wpdb->get_results($query, ARRAY_A);
 
-    $results = '';
+    $results = '<br>';
+
+    if (!$posts) {
+        $results .= '<p>You have no inactive trips.<p>';
+    }
 
     foreach ($posts as $post) {
 
@@ -361,8 +363,7 @@ function findInactiveFishingTrips($user_id) {
 
 
 
-        $results .= '
-                    <div class="bigContainer" style="position: relative;">
+        $results .= '   <div class="bigContainer" style="position: relative;">
                         <div class="statusAlert" name="statusAlert"></div>
                         <div class="tripContainer" name="tripContainer">
                             <div style="float:left; padding: 10px;">
@@ -383,18 +384,16 @@ function findInactiveFishingTrips($user_id) {
                             <div style="position: absolute; right: 0px; bottom: 0px; padding: 10px;">
                                 <input type="hidden" name="postID" id="postID" value="'.$postID.'">
 
-
-                                <a stlye="padding: 10px;" href="'.$webURL.'/page-user-setting/?sc=edit-trip&id='.$postID.'"><img src="'.get_site_url().'/wp-content/themes/traveler/img/icons/edit_ico.png" alt="" class="st-icon-menu"> Edit</a>
-
+                                <a href="'.$webURL.'/page-user-setting/?sc=edit-trip&id='.$postID.'" class="btn btn-primary">Edit</a>
                                           
-                                <a style="padding: 10px;" href="#" class="btnDelete"><img src="'.get_site_url().'/wp-content/themes/traveler/img/icons/trash_ico.png" alt="" class="st-icon-menu"> Delete</a>';
+                                <a class="btnDelete btn btn-primary">Delete</a>';
 
                                     if ($post_status == 'publish') {
 
-                                        $results.= '<a style="padding: 10px;" href="#" class="btnActivate"><img width=25px height=25px src="'.get_site_url().'/wp-content/themes/traveler/img/icons/activate.png" alt="" class="st-icon-menu"> Activate</a>';
+                                        $results.= '<a style="margin-left: 3px;" class="btnActivate btn btn-primary">Activate</a>';
                                     }
 
-                            $results .= '</div><br><hr></div></div><!-- main div --><br>';
+                            $results .= '</div></div></div><!-- main div --><br>';
 
 
 

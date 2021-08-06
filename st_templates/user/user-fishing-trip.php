@@ -55,7 +55,7 @@ if (!$captainLicenseStatus || !$boatInsuranceStatus) {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 500px;
+            width: 100%;
             height: 200px;
             text-align: center;
             background-color: #e8eae6;
@@ -85,8 +85,8 @@ if (!$captainLicenseStatus || !$boatInsuranceStatus) {
 		<div class="col-lg-12">
 			
 			<h1>Fishing Trips Offered</h1>
-			<p>If you have multiple trips of different types (location, price, etc) you will have to offer a new trip for each type. <br>
-			   Please <a href="<?php echo $webURL.'/contact/' ?>">contact us</a> if you have any issues or questions, we are always happy to help.</p>
+			<p>If you have multiple trips of different types (location, price, etc) you will have to offer a new trip for each type./<p>
+			<p>Please <a href="<?php echo $webURL.'/contact/' ?>">contact us</a> if you have any issues or questions, we are always happy to help.</p>
 
 			<div style="color: red;" id="verifMessage"><?php if ($post_status != 'publish') { echo "This post will not be made public until you complete your verifications and add availability.  Please check the Captain's Dashboard for more information."; } ?></div>
 
@@ -106,13 +106,24 @@ if (!$captainLicenseStatus || !$boatInsuranceStatus) {
 
 	<div class="row">
 		<div class="content">
+
 	        <div onclick="togglePopup()" class="close-btn">
 	            ×
 	        </div>
+
 	        <h3>Fishing trip successfully created!</h3>
 	  
 	        <p>If you want to duplicate this trip but just change a few things, simply click on the submit button again after changing what you need to change!</p>
 	        <p>Otherwise, you may return to the dashboard.</p>
+
+	        <button onClick="togglePopup()">Close this window</button>
+
+	        <form action="<?php echo $webURL.'/page-user-setting/?sc=dashboard'; ?>">
+	        	<input type="submit" value="Return to the Dashboard"/>
+	        </form>
+	        
+
+
 
 
     	</div>
@@ -244,7 +255,7 @@ if (!$captainLicenseStatus || !$boatInsuranceStatus) {
 	<div class="row" style="margin-top:60px;">
 		
 		<div class="col-lg-12" style="text-align:center;">
-			<input type="button" onClick="requestRecord();" value="Submit">
+			<input class="btn btn-primary" type="button" onClick="requestRecord();" value="Submit">
 		</form>
 
 
