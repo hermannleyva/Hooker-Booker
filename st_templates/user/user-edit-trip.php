@@ -157,7 +157,7 @@ if ($getPost = get_post($post_id)) {
 		<div class="col-lg-4">
 
 			<label for="defaultCanc">Cancellation Policy</label>
-			<p>You can choose to use the default cancellation policy, found <a href="#">here</a>, or use your own custom policy.</p>
+			<p>You can choose to use the default cancellation policy, found <a target="_blank" href="<?php echo $webURL.'/cancellation-policy/'; ?>">here</a>, or use your own custom policy.</p>
 			
 			<fieldset id="checkArray">
 				<input onClick="validateDefaultPolicy();" type="radio" name="cancPolicy"  value="defaultCanc" id="defaultCanc" style="margin-bottom: 0px;" <?php if ($cancPolicy === 'default' || !$cancPolicy) {
