@@ -26,6 +26,8 @@ if (!class_exists('AvailabilityHelper')) {
 
                 add_action('wp_ajax_st_get_availability_tour', [&$this, '_get_availability_tour']);
 
+                add_action('wp_ajax_opt_get_availability_tour', [&$this, '_opt_get_availability_tour']);
+
                 add_action('wp_ajax_st_get_availability_activity', [&$this, '_get_availability_activity']);
 
                 add_action('wp_ajax_st_get_availability_tour_frontend', [&$this, '_get_availability_tour_frontend']);
@@ -2046,6 +2048,250 @@ if (!class_exists('AvailabilityHelper')) {
 
                 }
 
+            }
+
+            echo json_encode($return);
+
+            die();
+
+        }
+
+
+public function _opt_get_availability_tour()
+
+        {
+
+            $return = [];
+
+            $tour_id = STInput::request('tour_id', '');
+
+            $tour_id = TravelHelper::post_origin($tour_id);
+
+            $userid = get_post_field( 'post_author', $tour_id);
+
+            $check_in = STInput::request('start', '');
+
+            $check_out = STInput::request('end', '');
+
+//                $discount_type=get_post_meta($tour_id,'discount_type',true);
+
+//                $discount=get_post_meta($tour_id,'discount',true);
+
+//                $is_sale_schedule=get_post_meta($tour_id,'is_sale_schedule',true);
+
+//                $sale_price_from=get_post_meta($tour_id,'sale_price_from',true);
+
+//                $sale_price_to=get_post_meta($tour_id,'sale_price_to',true);
+
+            $tour_type = get_post_meta($tour_id, 'tour_price_by', true);
+
+            $booking_period = intval(get_post_meta($tour_id, 'tours_booking_period', true));
+
+            $dateRanges = [];
+
+            //OPTIMA - 1.0 ENHANCEMENT AVAILABILITY
+
+            $newCheckIn = strtotime('- ' . 1 . ' day', strtotime(date('Y-m-d')));
+
+            if (get_post_type($tour_id) == 'st_tours') {
+
+                $availability = Opt_Tour_Availability::inst()
+
+                    ->where('check_in >=', $newCheckIn)
+
+                    ->where('check_in <=', $check_out)
+
+                    ->where('userid', $userid)
+
+                    ->groupby('check_in')
+
+                    ->get()->result();
+
+                // $availability = ST_Tour_Availability::inst()
+
+                //     ->where('check_in >=', $newCheckIn)
+
+                //     ->where('check_in <=', $check_out)
+
+                //     ->where('post_id', $tour_id)
+
+                //     ->where('status', 'available')
+
+                //     ->groupby('check_in')
+
+                //     ->get()->result();
+
+
+
+                    for ($i = $check_in; $i <= $check_out; $i = strtotime('+1 day', $i)) {
+
+                        $dateRanges[$i] = $i;
+
+                    }
+
+                if (!empty($availability)) {
+
+                    foreach ($availability as $key => $val) {
+
+                        $status = $val['status'];
+
+                        $userid = $val['userid'];
+
+//                            $val['price']=st_apply_discount($val['price'],$discount_type,$discount,$val['check_in'],$is_sale_schedule,$sale_price_from,$sale_price_to);
+
+//                            $val['adult_price']=st_apply_discount($val['adult_price'],$discount_type,$discount,$val['check_in'],$is_sale_schedule,$sale_price_from,$sale_price_to);
+
+//                            $val['child_price']=st_apply_discount($val['child_price'],$discount_type,$discount,$val['check_in'],$is_sale_schedule,$sale_price_from,$sale_price_to);
+
+//                            $val['infant_price']=st_apply_discount($val['infant_price'],$discount_type,$discount,$val['check_in'],$is_sale_schedule,$sale_price_from,$sale_price_to);
+
+//
+
+                        if (intval($val['groupday']) == 1) {
+
+                            $has_starttime = false;
+
+                            unset($dateRanges[$val['check_out']]);
+
+                            $ev = '';
+
+                            if ( $tour_type == 'fixed' ) {
+
+                                $ev .= ( (float)$val['price'] > 0 ) ? TravelHelper::format_money($val['price']) :  __('Free', 'traveler') . '<br/>';
+
+                                if (!empty($val['starttime'])) {
+
+                                    $has_starttime = true;
+
+                                    $ev .= '<i class="fa fa-clock-o"></i>&nbsp;' . $val['starttime'];
+
+                                }
+
+                            } else {
+
+                                if ( $hideA !== 'on' )
+
+                                    $ev = __('Adult: ', 'traveler') . TravelHelper::format_money($val['adult_price']) . '<br/>';
+
+                                if ( $hideC !== 'on' )
+
+                                    $ev .= __('Child: ', 'traveler') . TravelHelper::format_money($val['child_price']) . '<br/>';
+
+                                if ( $hideI !== 'on' )
+
+                                    $ev .= __('Infant: ', 'traveler') . TravelHelper::format_money($val['infant_price']) . '<br/>';
+
+                                if (!empty($val['starttime'])) {
+
+                                    $ev .= '<i class="fa fa-clock-o"></i>&nbsp;' . $val['starttime'];
+
+                                    $has_starttime = true;
+
+                                }
+
+                            }
+
+                            $return[] = [
+
+                                'userid' => $userid,
+
+                                'start'  => date( 'Y-m-d', $val['check_in'] ),
+
+                                'date'   => date( 'Y-m-d', $val['check_in'] ),
+
+                                'day'    => date( 'd', $val['check_in'] ),
+
+                                'end' => date('Y-m-d',strtotime('+1 day', $val['check_out'])),
+
+                                'date_end' => date('d',$val['check_out']),
+
+                                'status' => $status,
+
+                                'base_price' => ( (float)$val['price'] > 0 ) ? TravelHelper::format_money($val['price']) :  __('Free', 'traveler'),
+
+                                'adult_price' => ( (float)$val['adult_price'] > 0 ) ? TravelHelper::format_money($val['adult_price']) :  __('Free', 'traveler'),
+
+                                'child_price' => ( (float)$val['child_price'] > 0 ) ? TravelHelper::format_money($val['child_price']) :  __('Free', 'traveler'),
+
+                                'infant_price' => ( (float)$val['infant_price'] > 0 ) ? TravelHelper::format_money($val['infant_price']) : __('Free', 'traveler'),
+
+                                'event' => $ev,
+
+                                'starttime' => $val['starttime'],
+
+                                'has_starttime' => $has_starttime,
+
+                                'group' => 1
+
+                            ];
+
+                            // $return[] = [
+
+                            //     'start' => date('Y-m-d', $val['check_in']),
+
+                            //     'date' => date('Y-m-d', $val['check_in']),
+
+                            //     'day' => date('d', $val['check_in']),
+
+                            //     'end' => date('Y-m-d', strtotime('+1 day', $val['check_out'])),
+
+                            //     'date_end' => date('d', $val['check_out']),
+
+                            //     'status' => $status,
+
+                            //     'base_price' => ((float)$val['price'] < 0) ? 0 : (float)$val['price'],
+
+                            //     'adult_price' => ((float)$val['adult_price'] < 0) ? 0 : (float)$val['adult_price'],
+
+                            //     'child_price' => ((float)$val['child_price'] < 0) ? 0 : (float)$val['child_price'],
+
+                            //     'infant_price' => ((float)$val['infant_price'] < 0) ? 0 : (float)$val['infant_price'],
+
+                            //     'starttime' => $val['starttime'],
+
+                            // ];
+
+                        } else {
+
+                            $return[] = [
+
+                                'userid' => $userid,
+
+                                'start' => date('Y-m-d', $val['check_in']),
+
+                                'date' => date('Y-m-d', $val['check_in']),
+
+                                'day' => date('d', $val['check_in']),
+
+                                'status' => $status,
+
+                                'base_price' => ((float)$val['price'] < 0) ? 0 : (float)$val['price'],
+
+                                'adult_price' => ((float)$val['adult_price'] < 0) ? 0 : (float)$val['adult_price'],
+
+                                'child_price' => ((float)$val['child_price'] < 0) ? 0 : (float)$val['child_price'],
+
+                                'infant_price' => ((float)$val['infant_price'] < 0) ? 0 : (float)$val['infant_price'],
+
+                                'starttime' => $val['starttime'],
+
+                            ];
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            if (!$return) {
+                $return = [
+
+                    'userid' => $userid,
+                    'tour_id' => $tour_id
+
+                ];
             }
 
             echo json_encode($return);

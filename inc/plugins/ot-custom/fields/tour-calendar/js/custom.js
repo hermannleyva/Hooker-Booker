@@ -68,12 +68,14 @@ jQuery(function($){
                     dataType: "json",
                     type: "post",
                     data: {
-                        action: "st_get_availability_tour",
+                        user_id: 1,
+                        action: "opt_get_availability_tour",
                         tour_id: $(self.container).data("post-id"),
                         start: moment(start).unix(),
                         end: moment(end).unix()
                     },
                     success: function (doc) {
+                        console.log(doc);
                         if (typeof doc == "object") {
                             successCallback(doc);
                         }
