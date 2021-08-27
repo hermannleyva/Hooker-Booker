@@ -46,7 +46,7 @@ if (!class_exists('AvailabilityHelper')) {
 
                 add_action('wp_ajax_st_add_custom_price_tour', [&$this, '_add_custom_price_tour']);
 
-                add_action('wp_ajax_st_opt_add_custom_price_tour', [&$this, '_opt_add_custom_price_tour']);
+                add_action('wp_ajax_opt_add_custom_price_tour', [&$this, '_opt_add_custom_price_tour']);
 
                 add_action('wp_ajax_st_add_custom_price_activity', [&$this, '_add_custom_price_activity']);
 
@@ -4566,6 +4566,8 @@ public function _opt_add_custom_price_tour()
 
             $check_out = STInput::request('calendar_check_out', '');
 
+            $post_id = STInput::request('calendar_post_id', '');
+
             $format    = st()->get_option( 'datetime_format', '{mm}/{dd}/{yyyy}' );
 
             if($format === '{dd}/{mm}/{yyyy}'
@@ -4640,6 +4642,8 @@ public function _opt_add_custom_price_tour()
             $userid = get_current_user_id();
 
             $status = STInput::request('calendar_status', 'available');
+
+
 
             // $adult_price = floatval(STInput::request('calendar_adult_price', 0));
 
