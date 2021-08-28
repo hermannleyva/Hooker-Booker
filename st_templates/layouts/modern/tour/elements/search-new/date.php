@@ -39,7 +39,7 @@ if (!empty($end)) {
                         <label class="st-date-text"><?php echo esc_html__('When', 'traveler'); ?></label>
                         <?php
                     } else {
-                        echo esc_html($start) . esc_html__(" -", 'traveler');
+                        echo esc_html($start) . esc_html__("", 'traveler');
                     }
                     ?>
                 </div>

@@ -2092,8 +2092,8 @@ var getHeightHiddenEl = function (el) {
         }
         var customClass = parent.data('custom-class') || '';
         var options = {
-            singleDatePicker: false,
-            autoApply: true,
+            singleDatePicker: true,
+            autoApply: false,
             disabledPast: true,
             dateFormat: 'DD/MM/YYYY',
             customClass: customClass,
@@ -2101,6 +2101,9 @@ var getHeightHiddenEl = function (el) {
             onlyShowCurrentMonth: true,
             timePicker: timepicker,
             timePicker24Hour: (st_params.time_format == '12h') ? false : true,
+            sameDate: true,
+            startDate: moment(),
+            endDate: moment(),
         };
         if (typeof locale_daterangepicker == 'object') {
             options.locale = locale_daterangepicker;
@@ -2109,11 +2112,11 @@ var getHeightHiddenEl = function (el) {
                 function (start, end, label) {
                     check_in_input.val(start.format(parent.data('format'))).trigger('change');
                     $('#tp_hotel .form-date-search .check-in-input').val(start.format('YYYY-MM-DD')).trigger('change');
-                    var html = start.format(parent.data('format')) + ' - ';
+                    var html = start.format(parent.data('format'));
                     check_in_render.html(html).trigger('change');
-                    check_out_input.val(end.format(parent.data('format'))).trigger('change');
+                    // check_out_input.val(end.format(parent.data('format'))).trigger('change');
                     $('#tp_hotel .form-date-search .check-out-input').val(end.format('YYYY-MM-DD')).trigger('change');
-                    check_out_render.html(end.format(parent.data('format'))).trigger('change');
+                    // check_out_render.html(html).trigger('change');
 
                     if (timepicker) {
                         check_in_input.val(start.format(parent.data('date-format'))).trigger('change');

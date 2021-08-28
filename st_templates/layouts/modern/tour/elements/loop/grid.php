@@ -6,7 +6,7 @@ $info_price = STTour::get_info_price();
 
 if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
 
-    $_REQUEST['check_in'] = $_REQUEST['check_out'] = $_REQUEST['end'] = $_REQUEST['start'];
+    $_REQUEST['check_in'] =  $_REQUEST['date'] = $_REQUEST['check_out'] = $_REQUEST['end'] = $_REQUEST['start'];
 
 }
 
@@ -15,6 +15,7 @@ if(isset($_REQUEST['location_id'])) {
     $_REQUEST['location_id'] = intval($_REQUEST['location_id']);
 
 }
+
 
 if(isset($col) && !empty($col)){
 
@@ -28,7 +29,7 @@ if(isset($col) && !empty($col)){
 
 $url=st_get_link_with_search(get_permalink(),array('start','end','date','duration','people'),$_REQUEST);
 
-
+// var_dump($_REQUEST);
 
 $class = 'col-lg-'.$col.' col-md-6 col-sm-6 col-xs-12 item-service grid-item has-matchHeight';
 
@@ -36,9 +37,11 @@ if(isset($top_search) and $top_search)
 
     $class = 'col-lg-3 col-md-4 col-sm-6 col-xs-12 item-service grid-item has-matchHeight';
 
-if(isset($slider) and $slider)
+if(isset($slider) and $slider) 
 
     $class = 'item-service grid-item has-matchHeight';
+
+echo var_dump($_REQUEST);
 
 ?>
 
