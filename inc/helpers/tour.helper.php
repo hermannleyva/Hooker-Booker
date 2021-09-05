@@ -582,9 +582,17 @@
 
             {
 
-                $data = ST_Tour_Availability::inst()
+                global $wpdb;
 
-                                                ->select('post_id')
+                $data = array();
+
+                $i = 0;
+
+                //find all the userids available at this time
+
+                $userid_array = ST_Tour_Availability::inst()
+
+                                                ->select('userid')
 
                                                 ->where("CASE WHEN check_in = check_out THEN check_in BETWEEN {$check_in} AND {$check_out} ELSE
 
@@ -595,6 +603,27 @@
                                                 ->where("number_booked < (count_starttime * CASE WHEN number > 0 THEN `number` else (number_booked + 1) END)", true, false)
 
                                                 ->get()->result();
+
+
+                //take array of user ids and find all their post ids
+
+                foreach ($userid_array as $k => $v) {
+
+                    $query = $wpdb->prepare("SELECT `id` FROM `wp_posts` WHERE `post_author` = %d", $v['userid']);
+                    
+                    $results = $wpdb->get_results($query, ARRAY_N);
+
+                    foreach ($results as $key => $value) {
+
+                        $data[$i]['post_id'] = $value[0];
+
+                        $i++;
+
+                    }
+
+
+                }
+
 
                 $data_id = "''";
 

@@ -2068,15 +2068,18 @@ if (!class_exists('STTour')) {
 
         function _get_where_query($where) {
 
-            if (!TravelHelper::checkTableDuplicate('st_tours'))
+            if (!TravelHelper::checkTableDuplicate('st_tours')) {
 
                 return $where;
+            }
 
             global $wpdb, $st_search_args;
 
-            if (!$st_search_args)
+            if (!$st_search_args) {
 
                 $st_search_args = $_REQUEST;
+
+            }
 
             /**
 
@@ -2176,11 +2179,11 @@ if (!class_exists('STTour')) {
 
             $start = STInput::request("start");
 
-            $end = STInput::request("end");
+            $end = STInput::request("start");
 
             if (!empty($start) && !empty($end)) {
 
-                $list_date = TourHelper::_tourValidate(strtotime(TravelHelper::convertDateFormat($start)), strtotime(TravelHelper::convertDateFormat($end)));
+                $list_date = TourHelper::_tourValidate(strtotime(TravelHelper::convertDateFormat($start)), strtotime(TravelHelper::convertDateFormat($start)));
 
                 $where .= " AND {$wpdb->posts}.ID IN ({$list_date})";
 

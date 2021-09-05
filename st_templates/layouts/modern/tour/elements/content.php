@@ -6,6 +6,7 @@ if (empty($style))
 global $wp_query, $st_search_query;
 if ($st_search_query) {
     $query = $st_search_query;
+    // var_dump($query);
 } else
     $query = $wp_query;
 

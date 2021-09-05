@@ -2,6 +2,10 @@
 
 global $post;
 
+// echo ($post['ID'])
+
+// var_dump($post);
+
 $info_price = STTour::get_info_price();
 
 if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
@@ -29,8 +33,6 @@ if(isset($col) && !empty($col)){
 
 $url=st_get_link_with_search(get_permalink(),array('start','end','date','duration','people'),$_REQUEST);
 
-// var_dump($_REQUEST);
-
 $class = 'col-lg-'.$col.' col-md-6 col-sm-6 col-xs-12 item-service grid-item has-matchHeight';
 
 if(isset($top_search) and $top_search)
@@ -41,7 +43,6 @@ if(isset($slider) and $slider)
 
     $class = 'item-service grid-item has-matchHeight';
 
-echo var_dump($_REQUEST);
 
 ?>
 
