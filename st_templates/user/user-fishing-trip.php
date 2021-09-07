@@ -137,7 +137,7 @@ if (!$captainLicenseStatus || !$boatInsuranceStatus) {
 
 			<input type="hidden" value="<?php echo $user_id ?>" id="user_id">
 
-			<label for="tripName">Trip Name:</label>
+			<label for="tripName">Charter Name:</label>
 			<span id="tripNameErr" class="Err"></span>
 			<textarea id="tripName" name="tripName" rows="1" value="" style="width: 100%;" /></textarea>
 
