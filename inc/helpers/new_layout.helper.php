@@ -373,6 +373,10 @@ class New_Layout_Helper {
                 $check = true;
             }
 
+            if (is_page() && ( is_page_template('template-captain-directory.php'))) {
+                $check = true;
+            }
+
             if (is_page() && ( is_page_template('template-tour-search.php'))) {
                 $check = true;
             }

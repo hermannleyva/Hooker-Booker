@@ -9070,3 +9070,64 @@ ul.st-list {
 
     margin-top: 0px; } }
 
+
+
+/*Optima General*/
+
+.floatLeft {
+
+  float:  left;
+
+}
+
+.noMargin { 
+
+  margin:  0px;
+
+ }
+
+ .textCenter {
+
+  text-align:  center;
+
+ }
+
+.flex {
+
+  display:  flex;
+
+}
+
+.width100 {
+
+  width:  100%;
+
+}
+
+
+/*Captain Directory*/
+
+.captainAvatar {
+
+  margin: 15px 5px 10px 5px;
+
+}
+
+.captainContainer {
+
+  display:  flex;
+
+  border: 1px #5191FA dashed;
+
+  margin: 10px;
+
+}
+
+
+.captainDirectoryReview, .captainDirectoryReview li {
+
+  display: inline-block;
+
+  margin-right: 3px;
+
+}
