@@ -405,14 +405,14 @@ $role = array_shift($role);
                     <input readonly class="form-control" value="<?php echo esc_attr($data->user_login) ?>" type="text"/>
 
                 </div>
-<!-- 
+
                 <div class="form-group form-group-filled">
 
-                    <label for="st_paypal_email"><?php esc_html_e("Paypal Email (if applicable)",'traveler') ?></label>
+                    <label for="st_first_name"><?php esc_html_e("Charter Name or your Full Name",'traveler') ?></label>
 
-                    <input name="st_paypal_email" class="form-control" value="<?php echo esc_attr(get_user_meta($data->ID , 'st_paypal_email' , true)) ?>" type="text" />
+                    <input name="st_first_name" class="form-control" value="<?php echo esc_attr(get_user_meta($data->ID, 'first_name', true)) ?>" type="text" />
 
-                </div> -->
+                </div>
 
             </div>
 
@@ -456,7 +456,7 @@ $role = array_shift($role);
 
                 <div class="form-group form-group-filled">
 
-                    <label for="st_phone"><?php echo __('About Yourself', 'traveler'); ?></label>
+                    <label for="st_phone"><?php echo __('About Yourself or your Charter', 'traveler'); ?></label>
 
                     <textarea rows="6" name="st_bio" class="form-control" ><?php echo esc_attr(get_user_meta($data->ID , 'st_bio' , true)); ?></textarea>
 

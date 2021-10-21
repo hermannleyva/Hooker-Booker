@@ -40,7 +40,7 @@
 
                         <input type="text" class="form-control" name="fullname" autocomplete="off"
 
-                               placeholder="<?php echo esc_html__('Full Name', 'traveler') ?>">
+                               placeholder="<?php echo esc_html__('Charter Name or Full Name *', 'traveler') ?>">
 
                                <?php echo TravelHelper::getNewIcon('ico_fullname_signup', '', '20px', ''); ?>
 

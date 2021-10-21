@@ -12027,6 +12027,12 @@
 
                     $phone = $_REQUEST['st_phone'];
 
+                    //#17 - Update Search Page
+                    //Acquire Charter name or Full name from sign up process.
+                    //This will be displayed in search results and also in the captain directory
+
+                    $name = $_REQUEST['fullname'];
+
                     if (empty($user_name)) {
 
                         return new WP_Error('field', __('Required form field user name is missing', 'traveler'));
@@ -12038,6 +12044,11 @@
                         return new WP_Error('field', __('A phone number is required.', 'traveler'));
 
                     }
+
+                    if (empty($name)) {
+                        return new WP_error('field',_('A charter name or your full name is required.'));
+                    }
+
 
                     if (strlen($phone) < 10) {
 
@@ -13394,7 +13405,7 @@
 
                         update_user_meta( $id_user, 'nickname', STInput::request('st_name') );
 
-                        update_user_meta( $id_user, 'st_paypal_email', STInput::request('st_paypal_email') );
+                        update_user_meta( $id_user, 'first_name', STInput::request('st_first_name') );
 
                         $is_check = '';
 
