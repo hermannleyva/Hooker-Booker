@@ -78,5 +78,3 @@ add_theme_support(
 //get_template_part('demo/demo_functions');
 //get_template_part('quickview_demo/functions');
 //get_template_part('user_demo/functions');
-
-// laksh test
