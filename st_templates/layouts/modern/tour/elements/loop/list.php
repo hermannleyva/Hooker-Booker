@@ -32,11 +32,45 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
                 </div>
                 <a href="<?php echo esc_url($url); ?>">
                     <?php
+
+                    // if(has_post_thumbnail()){
+                    //     the_post_thumbnail(array(450, 417), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
+                    // }else{
+                    //     echo '<img src="'. get_template_directory_uri() . '/img/no-image.png' .'" alt="Default Thumbnail" class="img-responsive" />';
+                    // }
+
                     if(has_post_thumbnail()){
-                        the_post_thumbnail(array(450, 417), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
+
+                        //the_post_thumbnail(array(680, 630), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
+
+                        if (get_post_meta(get_the_ID(), 'postImageUrl', true)) {
+
+                            $imageURL   = get_post_meta(get_the_ID(), 'postImageUrl', true);
+                            $webURL     = get_site_url();
+                            $fullImgURL = $webURL.'/wp-content/themes/traveler/st_templates/user/postimgs/'.$imageURL;
+
+                            echo '<img class="img-responsive" src="'.$fullImgURL.'">';
+
+                        } else {
+
+                            the_post_thumbnail(array(450, 417), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
+
+                        }
+
+                        
+
+
+
                     }else{
+
                         echo '<img src="'. get_template_directory_uri() . '/img/no-image.png' .'" alt="Default Thumbnail" class="img-responsive" />';
+
                     }
+
+                    ?>
+
+
+
                     ?>
                 </a>
                 <?php do_action('st_list_compare_button',get_the_ID(),get_post_type(get_the_ID())); ?>
@@ -88,7 +122,8 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
                     </span>
                 <span class="price">
                         <?php
-                        echo STTour::get_price_html(get_the_ID());
+                        // echo STTour::get_price_html(get_the_ID());
+                        echo '<span class="text-lg lh1em item ">$' . get_post_meta(get_the_ID(), 'base_price', true) .'</span>';
                         ?>
                     </span>
             </div>
