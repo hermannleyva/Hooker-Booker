@@ -28,6 +28,9 @@ if (empty($layout))
         }
         ?>
         <?php
+        // laksh - start
+        add_filter( 'posts_groupby', 'one_per_author' );
+        // laksh - end
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
@@ -38,6 +41,9 @@ if (empty($layout))
             echo st()->load_template('layouts/modern/tour/elements/loop/none');
             echo ($style == 'grid') ? '</div>' : '';
         }
+        // laksh - start
+        remove_filter( 'posts_groupby', 'one_per_author' );
+        // laksh - end
         wp_reset_query();
         ?>
     </div>
