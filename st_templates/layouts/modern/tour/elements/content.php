@@ -3,6 +3,9 @@ $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
 if (empty($style))
     $style = 'grid';
 
+// laksh - start
+add_filter( 'posts_groupby', 'one_per_author' );
+// laksh - end
 global $wp_query, $st_search_query;
 if ($st_search_query) {
     $query = $st_search_query;
@@ -28,9 +31,6 @@ if (empty($layout))
         }
         ?>
         <?php
-        // laksh - start
-        add_filter( 'posts_groupby', 'one_per_author' );
-        // laksh - end
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
