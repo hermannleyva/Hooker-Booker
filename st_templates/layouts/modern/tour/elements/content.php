@@ -1,3 +1,10 @@
+// laksh - start
+<style type="text/css">
+    li.layout {
+        display: none;
+    }
+</style>
+// laksh - end
 <?php
 $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
 // laksh - start
