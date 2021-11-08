@@ -10,6 +10,7 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
     <div class="row item-service-wrapper has-matchHeight">
         <div class="col-sm-4 thumb-wrapper">
             <div class="thumb">
+                <img src="<?php the_author_meta( 'avatar' , $author_id ); ?> " width="450" height="417" class="avatar" alt="<?php echo the_author_meta( 'display_name' , $author_id ); ?>" />
                 <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                     <?php echo STFeatured::get_sale($info_price['discount']); ?>
                 <?php } ?>
