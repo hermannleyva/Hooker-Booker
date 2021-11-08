@@ -11,9 +11,9 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
         <div class="col-sm-4 thumb-wrapper">
             <div class="thumb">
                 <?php $author_id=$post->post_author; ?>
-                <?php $get_author_gravatar = get_avatar_url($author_id, array('size' => 270)); ?>
+                <?php $get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
                 <?php echo '<img src="'.$get_author_gravatar.'" />'; ?>
-                <?php echo get_avatar($author_id, 270); ?>
+                <?php echo get_avatar($author_id, 50); ?>
                 <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                     <?php echo STFeatured::get_sale($info_price['discount']); ?>
                 <?php } ?>
