@@ -128,7 +128,7 @@ $url = get_author_posts_url( $author_id );
                 ?>
             </div>
             <div class="service-type type-btn-view-more">
-                <a href="<?php echo esc_url($url) ?>" class="btn btn-primary btn-view-more"><?php echo __('VIEW TOUR', 'traveler'); ?></a>
+                <a href="<?php echo esc_url($url) ?>" class="btn btn-primary btn-view-more"><?php echo __('VIEW CAPTAIN', 'traveler'); ?></a>
             </div>
             <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                 <?php echo STFeatured::get_sale($info_price['discount']); ?>
