@@ -3,9 +3,6 @@ $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
 if (empty($style))
     $style = 'grid';
 
-// laksh - start
-add_filter( 'posts_groupby', 'one_per_author' );
-// laksh - end
 global $wp_query, $st_search_query;
 if ($st_search_query) {
     $query = $st_search_query;
@@ -44,9 +41,6 @@ if (empty($layout))
             echo st()->load_template('layouts/modern/tour/elements/loop/none');
             echo ($style == 'grid') ? '</div>' : '';
         }
-        // laksh - start
-        remove_filter( 'posts_groupby', 'one_per_author' );
-        // laksh - end
         wp_reset_query();
         ?>
     </div>
