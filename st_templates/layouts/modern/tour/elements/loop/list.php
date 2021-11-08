@@ -11,9 +11,9 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
         <div class="col-sm-4 thumb-wrapper">
             <div class="thumb">
                 <?php $author_id=$post->post_author; ?>
-                <?php $get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
-                <?php echo '<img src="'.$get_author_gravatar.'" />'; ?>
-                <?php echo get_avatar($author_id, 50); ?>
+                <?php //$get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
+                <?php //echo '<img src="'.$get_author_gravatar.'" />'; ?>
+                <?php //echo get_avatar($author_id, 50); ?>
                 <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                     <?php echo STFeatured::get_sale($info_price['discount']); ?>
                 <?php } ?>
@@ -52,7 +52,11 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
                 <?php if ($address = get_post_meta(get_the_ID(), 'address', TRUE)): ?>
                     <p class="service-location"><?php echo TravelHelper::getNewIcon('Ico_maps', '#666666', '15px', '15px', true); ?><?php echo esc_html($address); ?></p>
                 <?php endif;?>
-                <h4 class="service-title"><a href="<?php echo esc_url($url); ?>"><?php echo get_the_title(); ?></a></h4>
+                <h4 class="service-title"><a href="<?php echo esc_url($url); ?>"><?php 
+                    //laksh - start
+                    the_author_meta( 'display_name' , $author_id );
+                    //laksh - end
+                    ?></a></h4>
                 <div class="service-review">
                     <ul class="icon-group text-color booking-item-rating-stars">
                         <?php
