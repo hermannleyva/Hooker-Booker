@@ -50,7 +50,7 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
         <div class="col-sm-5 item-content">
             <div class="item-content-w">
                 <?php if ($address = get_post_meta(get_the_ID(), 'address', TRUE)): ?>
-                    <p class="service-location"><?php echo TravelHelper::getNewIcon('Ico_maps', '#666666', '15px', '15px', true); ?><?php echo esc_html($address); ?></p>
+                    <p class="service-location"><?php //echo TravelHelper::getNewIcon('Ico_maps', '#666666', '15px', '15px', true); ?><?php //echo esc_html($address); ?></p>
                 <?php endif;?>
                 <h4 class="service-title"><a href="<?php echo esc_url($url); ?>"><?php 
                     //laksh - start
@@ -61,16 +61,16 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
                     <ul class="icon-group text-color booking-item-rating-stars">
                         <?php
                         $avg = STReview::get_avg_rate();
-                        echo TravelHelper::rate_to_string($avg);
+                        //echo TravelHelper::rate_to_string($avg);
                         ?>
                     </ul>
                     <?php
                     $count_review = get_comment_count(get_the_ID())['approved'];
                     ?>
-                    <span class="review"><?php echo esc_html($count_review) . ' ' . _n(esc_html__('Review', 'traveler'),esc_html__('Reviews', 'traveler'),$count_review); ?></span>
+                    <span class="review"><?php //echo esc_html($count_review) . ' ' . _n(esc_html__('Review', 'traveler'),esc_html__('Reviews', 'traveler'),$count_review); ?></span>
                 </div>
                 <div class="service-excerpt">
-                    <?php echo New_Layout_Helper::cutStringByNumWord(get_the_excerpt(), 12); ?>
+                    <?php //echo New_Layout_Helper::cutStringByNumWord(get_the_excerpt(), 12); ?>
                 </div>
             </div>
         </div>
