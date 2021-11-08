@@ -82,8 +82,8 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
             if(!empty($duration)) {
                 ?>
                 <div class="service-duration hidden-lg hidden-md hidden-sm">
-                    <?php echo TravelHelper::getNewIcon('time-clock-circle-1', '#5E6D77', '17px', '17px'); ?>
-                    <?php echo esc_html($duration); ?>
+                    <?php //echo TravelHelper::getNewIcon('time-clock-circle-1', '#5E6D77', '17px', '17px'); ?>
+                    <?php //echo esc_html($duration); ?>
                 </div>
                 <?php
             }
@@ -105,8 +105,8 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
             if(!empty($duration)) {
                 ?>
                 <div class="service-duration hidden-xs">
-                    <?php echo TravelHelper::getNewIcon('time-clock-circle-1', '#5E6D77', '17px', '17px'); ?>
-                    <?php echo esc_html($duration); ?>
+                    <?php //echo TravelHelper::getNewIcon('time-clock-circle-1', '#5E6D77', '17px', '17px'); ?>
+                    <?php //echo esc_html($duration); ?>
                 </div>
                 <?php
             }
@@ -117,8 +117,8 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
                     $tour_type = get_the_terms(get_the_ID(), 'st_tour_type');
                     if(!empty($tour_type)){
                         $tour_type_str = $tour_type[0]->name;
-                        echo TravelHelper::getNewIcon('ico_tour_type', '#000000', '17px', '17px', true);
-                        echo esc_html($tour_type_str);
+                        //echo TravelHelper::getNewIcon('ico_tour_type', '#000000', '17px', '17px', true);
+                        //echo esc_html($tour_type_str);
                     }
                 ?>
             </div>
