@@ -1,7 +1,7 @@
 <?php
 $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
 if (empty($style))
-    $style = 'grid';
+    $style = 'list';
 
 global $wp_query, $st_search_query;
 if ($st_search_query) {
