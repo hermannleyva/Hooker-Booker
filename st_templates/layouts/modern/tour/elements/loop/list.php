@@ -15,9 +15,9 @@ $url = get_author_posts_url( $author_id );
         <div class="col-sm-4 thumb-wrapper">
             <div class="thumb">
 <!--                 laksh - start -->
-                <?php $get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
-                <?php echo '<img src="'.$get_author_gravatar.'" />'; ?>
-                <?php echo get_avatar($author_id, 50); ?>
+                <?php //$get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
+                <?php //echo '<img src="'.$get_author_gravatar.'" />'; ?>
+                <?php //echo get_avatar($author_id, 50); ?>
 <!--                 laksh - end -->
                 <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                     <?php echo STFeatured::get_sale($info_price['discount']); ?>
