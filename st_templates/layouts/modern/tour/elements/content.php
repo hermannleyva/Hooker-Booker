@@ -4,7 +4,7 @@ if (empty($style))
     $style = 'grid';
 
 // laksh - start
-add_filter( 'posts_groupby', 'one_per_author' );
+apply_filter( 'posts_groupby', 'one_per_author' );
 // laksh - end
 global $wp_query, $st_search_query;
 if ($st_search_query) {
