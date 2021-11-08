@@ -34,6 +34,7 @@ if (empty($layout))
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
+                echo $query->the_post()->post_author;
                 echo st()->load_template('layouts/modern/tour/elements/loop/' . esc_attr($style));
             }
         } else {
