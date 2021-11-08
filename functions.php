@@ -81,10 +81,11 @@ add_theme_support(
 
 // laksh - start
 
-function one_per_author($groupby) {
+function my_posts_groupby($groupby) {
     global $wpdb;
     $groupby = "{$wpdb->posts}.post_author";
     return $groupby;
 }
+add_filter( 'posts_groupby', 'my_posts_groupby' );
 
 // laksh - end
