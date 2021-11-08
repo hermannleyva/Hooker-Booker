@@ -1,7 +1,11 @@
 <?php
 $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
+// laksh - start
 if (empty($style))
     $style = 'list';
+else
+    $style = 'list';
+// laksh - end
 
 global $wp_query, $st_search_query;
 if ($st_search_query) {
