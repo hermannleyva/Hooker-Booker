@@ -112,7 +112,7 @@ echo $child_number = $_GET['child_number'];
                     global $wpdb;
                     $post_id = get_the_ID();
                     $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
-                    if( in_array($start_timestamp, $result) ) {
+                    if( !in_array($start_timestamp, $result) ) {
                         switch ($service) {
                             case "hotel":
                                 echo st()->load_template('layouts/modern/hotel/elements/loop/normal', 'grid');
