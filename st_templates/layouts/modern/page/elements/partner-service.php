@@ -99,36 +99,36 @@ $child_number = $_GET['child_number'];
                     //     break;
                 }
                 while ($query->have_posts()) {
-//                     laksh - start
-                    $query->the_post();
-                    echo $start_timestamp = strtotime($start);
-                    global $wpdb;
-                    $post_id = get_the_ID();
-                    $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
-                    if( !in_array($start_timestamp, $result) ) {
-                        switch ($service) {
-                            case "hotel":
-                                echo st()->load_template('layouts/modern/hotel/elements/loop/normal', 'grid');
-                                break;
-                            case "tours":
-                                echo st()->load_template('layouts/modern/tour/elements/loop/grid');
-                                break;
-                            case "activity":
-                                echo st()->load_template('layouts/modern/activity/elements/loop/grid');
-                                break;
-                            case "cars":
-                                echo st()->load_template('layouts/modern/car/elements/loop/grid');
-                                break;
-                            case "rental":
-                                echo '<div class="col-lg-4 col-md-6 col-xs-6">';
-                                echo st()->load_template('layouts/modern/rental/elements/loop/grid');
-                                echo '</div>';
-                                break;
-                            case "flight":
-                                echo st()->load_template('user/loop/loop', 'flight-upage');
-                                break;
-                        }
+                    switch ($service) {
+                        case "hotel":
+                            echo st()->load_template('layouts/modern/hotel/elements/loop/normal', 'grid');
+                            break;
+                        case "tours":
+                            echo st()->load_template('layouts/modern/tour/elements/loop/grid');
+                            break;
+                        case "activity":
+                            echo st()->load_template('layouts/modern/activity/elements/loop/grid');
+                            break;
+                        case "cars":
+                            echo st()->load_template('layouts/modern/car/elements/loop/grid');
+                            break;
+                        case "rental":
+                            echo '<div class="col-lg-4 col-md-6 col-xs-6">';
+                            echo st()->load_template('layouts/modern/rental/elements/loop/grid');
+                            echo '</div>';
+                            break;
+                        case "flight":
+                            echo st()->load_template('user/loop/loop', 'flight-upage');
+                            break;
                     }
+//                     laksh - start
+//                     $query->the_post();
+//                     echo $start_timestamp = strtotime($start);
+//                     global $wpdb;
+//                     $post_id = get_the_ID();
+//                     $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
+//                     if( !in_array($start_timestamp, $result) ) {
+//                     }
 //                     laksh - end
                 }
                 echo "</div></div></div>";
