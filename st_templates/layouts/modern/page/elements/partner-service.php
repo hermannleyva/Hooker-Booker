@@ -44,6 +44,7 @@ if (!empty($arr_service)) { ?>
         ?>
     </ul>
     <div class="tab-content">
+        test
         <div class="tab-pane fade active in author-sv-list" id="tab-all">
             <?php
             $service = STInput::get('service', $arr_service[0]);
