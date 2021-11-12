@@ -8,6 +8,7 @@ if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
 // laksh - start
 $author_id = $post->post_author;
 $url = get_author_posts_url( $author_id );
+echo $_GET['location_name'];
 // laksh - end
 ?>
 <div class="item-service">
