@@ -54,12 +54,20 @@ if (!empty($arr_service)) { ?>
             $author = $current_user_upage->ID;
 //     laksh - start
 echo $location_name = $_GET['location_name'];
+    echo "<br>";
 echo $location_id = $_GET['location_id'];
+    echo "<br>";
 echo $start = $_GET['start'];
+    echo "<br>";
 echo $end = $_GET['end'];
+    echo "<br>";
 echo $date = $_GET['date'];
+    echo "<br>";
 echo $adult_number = $_GET['adult_number'];
+    echo "<br>";
 echo $child_number = $_GET['child_number'];
+    echo "<br>";
+echo $start->getTimestamp();
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
