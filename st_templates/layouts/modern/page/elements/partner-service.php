@@ -52,6 +52,8 @@ if (!empty($arr_service)) { ?>
             $service = STInput::get('service', $arr_service[0]);
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $author = $current_user_upage->ID;
+//     laksh - start
+    echo $location_id = $_GET['location_id'];
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
@@ -59,6 +61,7 @@ if (!empty($arr_service)) { ?>
                 'posts_per_page' => 6,
                 'paged' => $paged
             );
+//     laksh - end
             $query = new WP_Query($args);
 
             if ($query->have_posts()) {
