@@ -68,7 +68,7 @@ echo $adult_number = $_GET['adult_number'];
 echo $child_number = $_GET['child_number'];
     echo "<br>";
 // echo $start->getTimestamp();
-echo (bool)strtotime($start);
+echo strtotime($start);
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
