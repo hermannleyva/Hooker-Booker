@@ -101,7 +101,7 @@ $child_number = $_GET['child_number'];
                 while ($query->have_posts()) {
 //                     laksh - start
                     $query->the_post();
-                    $start_timestamp = strtotime($start);
+                    echo $start_timestamp = strtotime($start);
                     global $wpdb;
                     $post_id = get_the_ID();
                     $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
