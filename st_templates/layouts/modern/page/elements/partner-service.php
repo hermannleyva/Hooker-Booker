@@ -53,20 +53,13 @@ if (!empty($arr_service)) { ?>
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $author = $current_user_upage->ID;
 //     laksh - start
-echo $location_name = $_GET['location_name'];
-    echo "<br>";
-echo $location_id = $_GET['location_id'];
-    echo "<br>";
-echo $start = $_GET['start'];
-    echo "<br>";
-echo $end = $_GET['end'];
-    echo "<br>";
-echo $date = $_GET['date'];
-    echo "<br>";
-echo $adult_number = $_GET['adult_number'];
-    echo "<br>";
-echo $child_number = $_GET['child_number'];
-    echo "<br>";
+$location_name = $_GET['location_name'];
+$location_id = $_GET['location_id'];
+$start = $_GET['start'];
+$end = $_GET['end'];
+$date = $_GET['date'];
+$adult_number = $_GET['adult_number'];
+$child_number = $_GET['child_number'];
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
@@ -112,7 +105,7 @@ echo $child_number = $_GET['child_number'];
                     global $wpdb;
                     $post_id = get_the_ID();
                     $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
-                    if( in_array($start_timestamp, $result) ) {
+                    if( !in_array($start_timestamp, $result) ) {
                         switch ($service) {
                             case "hotel":
                                 echo st()->load_template('layouts/modern/hotel/elements/loop/normal', 'grid');
