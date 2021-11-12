@@ -68,8 +68,8 @@ echo $child_number = $_GET['child_number'];
                 'paged' => $paged,
                 'meta_query' => array(
                     array(
-                        'key' => 'multi_location',
-                        'value' => 9468,
+                        'key' => 'address',
+                        'value' => 'Cape Canaveral',
                         'compare' => 'LIKE'
                     )
                 ),
