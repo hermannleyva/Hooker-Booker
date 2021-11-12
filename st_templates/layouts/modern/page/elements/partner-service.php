@@ -53,13 +53,26 @@ if (!empty($arr_service)) { ?>
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $author = $current_user_upage->ID;
 //     laksh - start
-    echo $location_id = $_GET['location_id'];
+echo $location_name = $_GET['location_name'];
+echo $location_id = $_GET['location_id'];
+echo $start = $_GET['start'];
+echo $end = $_GET['end'];
+echo $date = $_GET['date'];
+echo $adult_number = $_GET['adult_number'];
+echo $child_number = $_GET['child_number'];
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
                 'author' => $author,
                 'posts_per_page' => 6,
-                'paged' => $paged
+                'paged' => $paged,
+                'meta_query' => array(
+                    array(
+                        'key' => 'multi_location',
+                        'value' => $location_id,
+                        'compare' => 'LIKE'
+                    )
+                ),
             );
 //     laksh - end
             $query = new WP_Query($args);
