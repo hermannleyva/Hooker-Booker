@@ -69,7 +69,7 @@ echo $child_number = $_GET['child_number'];
                 'meta_query' => array(
                     array(
                         'key' => 'multi_location',
-                        'value' => $location_id,
+                        'value' => 9468,
                         'compare' => 'LIKE'
                     )
                 ),
