@@ -17,8 +17,8 @@ else
 global $wp_query, $st_search_query;
 if ($st_search_query) {
     $query = $st_search_query;
-    echo "<pre>";
-    print_r($query);
+//     echo "<pre>";
+//     print_r($query);
 } else
     $query = $wp_query;
 
