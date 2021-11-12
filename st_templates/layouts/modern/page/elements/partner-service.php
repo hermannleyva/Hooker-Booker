@@ -67,8 +67,6 @@ echo $adult_number = $_GET['adult_number'];
     echo "<br>";
 echo $child_number = $_GET['child_number'];
     echo "<br>";
-// echo $start->getTimestamp();
-echo strtotime($start);
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
                 'post_status' => 'publish',
@@ -109,6 +107,11 @@ echo strtotime($start);
                 }
                 while ($query->have_posts()) {
                     $query->the_post();
+                    echo strtotime($start);
+                    global $wpdb;
+                    $post_id = get_the_ID();
+                    $result = $wpdb->get_results( "SELECT * FROM wp_st_tour_availability WHERE post_id = $post_id");
+                    print_r($result);
                     switch ($service) {
                         case "hotel":
                             echo st()->load_template('layouts/modern/hotel/elements/loop/normal', 'grid');
