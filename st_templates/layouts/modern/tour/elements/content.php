@@ -1,17 +1,17 @@
 <!-- laksh - start -->
-<!-- <style type="text/css">
+<style type="text/css">
     li.layout {
         display: none;
     }
-</style> -->
+</style>
 <!-- laksh - end -->
 <?php
 $style = get_post_meta(get_the_ID(), 'rs_style_tour', true);
 // laksh - start
-// if (empty($style))
-//     $style = 'list';
-// else
-//     $style = 'list';
+if (empty($style))
+    $style = 'list';
+else
+    $style = 'list';
 // laksh - end
 
 global $wp_query, $st_search_query;
