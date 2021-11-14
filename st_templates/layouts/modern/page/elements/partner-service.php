@@ -60,12 +60,12 @@ if (!empty($arr_service)) { ?>
 // $date = $_GET['date'];
 // $adult_number = $_GET['adult_number'];
 // $child_number = $_GET['child_number'];
-//             $args = array(
-//                 'post_type' => 'st_' . esc_attr($service),
-//                 'post_status' => 'publish',
-//                 'author' => $author,
-//                 'posts_per_page' => 6,
-//                 'paged' => $paged,
+            $args = array(
+                'post_type' => 'st_' . esc_attr($service),
+                'post_status' => 'publish',
+                'author' => $author,
+                'posts_per_page' => 6,
+                'paged' => $paged,
 //                 'meta_query' => array(
 //                     array(
 //                         'key' => 'address',
@@ -73,7 +73,7 @@ if (!empty($arr_service)) { ?>
 //                         'compare' => 'LIKE'
 //                     )
 //                 ),
-//             );
+            );
 //     laksh - end
             $query = new WP_Query($args);
 
