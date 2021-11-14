@@ -73,7 +73,7 @@ if (!empty($arr_service)) { ?>
 //                         'compare' => 'LIKE'
 //                     )
 //                 ),
-            );
+//             );
 //     laksh - end
             $args = array(
                 'post_type' => 'st_' . esc_attr($service),
