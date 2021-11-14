@@ -49,11 +49,11 @@ $url = get_author_posts_url( $author_id ) . '?location_name='.$location_name.'&l
                 </div>
                 <a href="<?php echo esc_url($url); ?>">
                     <?php
-                    if(has_post_thumbnail()){
-                        the_post_thumbnail(array(450, 417), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
-                    }else{
-                        echo '<img src="'. get_template_directory_uri() . '/img/no-image.png' .'" alt="Default Thumbnail" class="img-responsive" />';
-                    }
+//                     if(has_post_thumbnail()){
+//                         the_post_thumbnail(array(450, 417), array('alt' => TravelHelper::get_alt_image(), 'class' => 'img-responsive'));
+//                     }else{
+//                         echo '<img src="'. get_template_directory_uri() . '/img/no-image.png' .'" alt="Default Thumbnail" class="img-responsive" />';
+//                     }
                     ?>
                 </a>
                 <?php do_action('st_list_compare_button',get_the_ID(),get_post_type(get_the_ID())); ?>
