@@ -47,7 +47,7 @@ if (!empty($arr_service)) { ?>
         <div class="tab-pane fade active in author-sv-list" id="tab-all">
             <?php
 //     laksh - start
-    remove_filter( 'posts_groupby', 'my_posts_groupby' );
+//     remove_filter( 'posts_groupby', 'my_posts_groupby' );
 //     laksh - end
             $service = STInput::get('service', $arr_service[0]);
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
