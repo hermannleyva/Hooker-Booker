@@ -25,7 +25,7 @@ $url = get_author_posts_url( $author_id ) . '?location_name='.$location_name.'&l
                 <?php //$get_author_gravatar = get_avatar_url($author_id, array('size' => 50)); ?>
                 <?php //echo '<img src="'.$get_author_gravatar.'" />'; ?>
                 <?php //echo get_avatar($author_id, 50); ?>
-                <?php  echo st_get_profile_avatar( $author_id, 417 );  ?>
+                <?php  echo st_get_profile_avatar( $author_id, 270 );  ?>
 <!--                 laksh - end -->
                 <?php if(!empty( $info_price['discount'] ) and $info_price['discount']>0 and $info_price['price_new'] >0) { ?>
                     <?php echo STFeatured::get_sale($info_price['discount']); ?>
