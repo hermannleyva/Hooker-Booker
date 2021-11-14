@@ -75,13 +75,13 @@ if (!empty($arr_service)) { ?>
 //                 ),
 //             );
 //     laksh - end
-            $args = array(
-                'post_type' => 'st_' . esc_attr($service),
-                'post_status' => 'publish',
-                'author' => $author,
-                'posts_per_page' => 6,
-                'paged' => $paged,
-            );
+//             $args = array(
+//                 'post_type' => 'st_' . esc_attr($service),
+//                 'post_status' => 'publish',
+//                 'author' => $author,
+//                 'posts_per_page' => 6,
+//                 'paged' => $paged,
+//             );
             $query = new WP_Query($args);
 
             if ($query->have_posts()) {
