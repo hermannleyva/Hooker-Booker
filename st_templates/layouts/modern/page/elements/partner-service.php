@@ -53,7 +53,7 @@ if (!empty($arr_service)) { ?>
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $author = $current_user_upage->ID;
 //     laksh - start
-// $location_name = $_GET['location_name'];
+$location_name = $_GET['location_name'];
 $location_id = $_GET['location_id'];
 $start = $_GET['start'];
 $end = $_GET['end'];
@@ -66,13 +66,13 @@ $child_number = $_GET['child_number'];
                 'author' => $author,
                 'posts_per_page' => 6,
                 'paged' => $paged,
-//                 'meta_query' => array(
-//                     array(
-//                         'key' => 'address',
-//                         'value' => $location_name,
-//                         'compare' => 'LIKE'
-//                     )
-//                 ),
+                'meta_query' => array(
+                    array(
+                        'key' => 'address',
+                        'value' => $location_name,
+                        'compare' => 'LIKE'
+                    )
+                ),
             );
 //     laksh - end
 //             $args = array(
