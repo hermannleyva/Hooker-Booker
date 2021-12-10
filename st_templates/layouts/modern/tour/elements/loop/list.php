@@ -9,7 +9,8 @@ if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
 $location_id = $_GET['location_id'];
 global $wpdb;
 $results = $wpdb->get_results( "SELECT * FROM wp_st_location_nested WHERE location_id = '".$location_id."'", OBJECT );
-var_dump($results);
+echo "<pre>";
+print_r($results);
 // $location_name = $_GET['location_name'];
 $start = $_GET['start'];
 $end = $_GET['end'];
