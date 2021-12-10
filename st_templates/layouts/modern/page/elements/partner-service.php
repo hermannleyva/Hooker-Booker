@@ -68,8 +68,8 @@ $child_number = $_GET['child_number'];
                 'paged' => $paged,
                 'meta_query' => array(
                     array(
-                        'key' => 'multi_location',
-                        'value' => $location_id,
+                        'key' => 'address',
+                        'value' => $location_name,
                         'compare' => 'LIKE'
                     )
                 ),
