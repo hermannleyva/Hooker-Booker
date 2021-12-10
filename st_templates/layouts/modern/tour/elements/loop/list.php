@@ -6,8 +6,11 @@ if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
 }
 // $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','duration','people'),$_REQUEST);
 // laksh - start
-$location_name = $_GET['location_name'];
 $location_id = $_GET['location_id'];
+global $wpdb;
+$results = $wpdb->get_results( "SELECT * FROM wp_st_location_nested WHERE location_id = '".$location_id."'", OBJECT );
+var_dump($results);
+// $location_name = $_GET['location_name'];
 $start = $_GET['start'];
 $end = $_GET['end'];
 $date = $_GET['date'];
