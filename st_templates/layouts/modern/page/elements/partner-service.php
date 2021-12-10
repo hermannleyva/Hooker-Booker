@@ -66,13 +66,13 @@ $child_number = $_GET['child_number'];
                 'author' => $author,
                 'posts_per_page' => 6,
                 'paged' => $paged,
-//                 'meta_query' => array(
-//                     array(
-//                         'key' => 'address',
-//                         'value' => '726 Scallop Drive, Cape Canaveral, FL, USA',
-//                         'compare' => 'LIKE'
-//                     )
-//                 ),
+                'meta_query' => array(
+                    array(
+                        'key' => 'multi_location',
+                        'value' => $location_id,
+                        'compare' => 'LIKE'
+                    )
+                ),
             );
 //     laksh - end
 //             $args = array(
