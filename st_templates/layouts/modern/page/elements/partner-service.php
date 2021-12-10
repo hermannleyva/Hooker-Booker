@@ -69,7 +69,7 @@ $child_number = $_GET['child_number'];
                 'meta_query' => array(
                     array(
                         'key' => 'address',
-                        'value' => $location_name,
+                        'value' => '726 Scallop Drive, Cape Canaveral, FL, USA',
                         'compare' => 'LIKE'
                     )
                 ),
