@@ -66,13 +66,13 @@ $child_number = $_GET['child_number'];
                 'author' => $author,
                 'posts_per_page' => 6,
                 'paged' => $paged,
-                'meta_query' => array(
-                    array(
-                        'key' => 'address',
-                        'value' => $location_name,
-                        'compare' => 'LIKE'
-                    )
-                ),
+//                 'meta_query' => array(
+//                     array(
+//                         'key' => 'address',
+//                         'value' => $location_name,
+//                         'compare' => 'LIKE'
+//                     )
+//                 ),
             );
 //     laksh - end
 //             $args = array(
