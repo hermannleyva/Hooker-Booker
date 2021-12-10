@@ -11,6 +11,7 @@ global $wpdb;
 $results = $wpdb->get_results( "SELECT * FROM wp_st_location_nested WHERE location_id = '".$location_id."'", OBJECT );
 echo "<pre>";
 print_r($results);
+echo $results[0]->name;
 // $location_name = $_GET['location_name'];
 $start = $_GET['start'];
 $end = $_GET['end'];
