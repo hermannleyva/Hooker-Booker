@@ -16,7 +16,7 @@ $location_name = $results[0]->name;
 // $adult_number = $_GET["adult_number"];
 // $child_number = $_GET["child_number"];
 $author_id = $post->post_author;
-$url = get_author_posts_url( $author_id ) . "?location_name=".$location_name;
+$url = get_author_posts_url( $author_id );
 // $url = get_author_posts_url( $author_id ) . "?location_name=".$location_name."&location_id=".$location_id."&start=".$start."&end=".$end."&date=".$date."&adult_number=".$adult_number."&child_number=".$child_number;
 // laksh - end
 ?>
