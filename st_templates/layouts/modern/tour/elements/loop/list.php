@@ -4,21 +4,19 @@ $info_price = STTour::get_info_price();
 if ( isset( $_REQUEST['start'] ) && strlen( $_REQUEST['start'] ) > 0 ) {
     $_REQUEST['check_in'] = $_REQUEST['check_out'] = $_REQUEST['end'] = $_REQUEST['start'];
 }
-// $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','duration','people'),$_REQUEST);
+$url=st_get_link_with_search(get_permalink(),array('check_in','check_out','duration','people'),$_REQUEST);
 // laksh - start
-$location_id = $_GET['location_id'];
-global $wpdb;
-$results = $wpdb->get_results( "SELECT * FROM wp_st_location_nested WHERE location_id = '".$location_id."'", OBJECT );
-$location_name = $results[0]->name;
-// $location_name = $_GET['location_name'];
-$start = $_GET["start"];
-$end = $_GET["end"];
-$date = $_GET["date"];
-$adult_number = $_GET["adult_number"];
-$child_number = $_GET["child_number"];
-$author_id = $post->post_author;
-$url = get_author_posts_url( $author_id ) . "?location_name=".$location_name."&location_id=".$location_id."&start=".$start."&end=".$end."&date=".$date."&adult_number=".$adult_number."&child_number=".$child_number;
-// $url = get_author_posts_url( $author_id ) . '?location_id='.$location_id.'&start='.$start.'&end='.$end.'&date='.$date.'&adult_number='.$adult_number.'&child_number='.$child_number;
+// $location_id = $_GET['location_id'];
+// global $wpdb;
+// $results = $wpdb->get_results( "SELECT * FROM wp_st_location_nested WHERE location_id = '".$location_id."'", OBJECT );
+// $location_name = $results[0]->name;
+// $start = $_GET["start"];
+// $end = $_GET["end"];
+// $date = $_GET["date"];
+// $adult_number = $_GET["adult_number"];
+// $child_number = $_GET["child_number"];
+// $author_id = $post->post_author;
+// $url = get_author_posts_url( $author_id ) . "?location_name=".$location_name."&location_id=".$location_id."&start=".$start."&end=".$end."&date=".$date."&adult_number=".$adult_number."&child_number=".$child_number;
 // laksh - end
 ?>
 <div class="item-service">
