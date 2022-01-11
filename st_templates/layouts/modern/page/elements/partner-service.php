@@ -53,37 +53,37 @@ if (!empty($arr_service)) { ?>
             $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
             $author = $current_user_upage->ID;
 //     laksh - start
-// if ( isset($_GET['location_name']) ) {
-//     $location_name = $_GET['location_name'];
-//     $location_id = $_GET['location_id'];
-//     $start = $_GET['start'];
-//     $end = $_GET['end'];
-//     $date = $_GET['date'];
-//     $adult_number = $_GET['adult_number'];
-//     $child_number = $_GET['child_number'];
-// }
-            $args = array(
-                'post_type' => 'st_' . esc_attr($service),
-                'post_status' => 'publish',
-                'author' => $author,
-                'posts_per_page' => 6,
-                'paged' => $paged,
-//                 'meta_query' => array(
-//                     array(
-//                         'key' => 'address',
-//                         'value' => $location_name,
-//                         'compare' => 'LIKE'
-//                     )
-//                 ),
-            );
-//     laksh - end
+            // if ( isset($_GET['location_name']) ) {
+            //     $location_name = $_GET['location_name'];
+            //     $location_id = $_GET['location_id'];
+            //     $start = $_GET['start'];
+            //     $end = $_GET['end'];
+            //     $date = $_GET['date'];
+            //     $adult_number = $_GET['adult_number'];
+            //     $child_number = $_GET['child_number'];
+            // }
 //             $args = array(
 //                 'post_type' => 'st_' . esc_attr($service),
 //                 'post_status' => 'publish',
 //                 'author' => $author,
 //                 'posts_per_page' => 6,
 //                 'paged' => $paged,
+            //                 'meta_query' => array(
+            //                     array(
+            //                         'key' => 'address',
+            //                         'value' => $location_name,
+            //                         'compare' => 'LIKE'
+            //                     )
+            //                 ),
 //             );
+//     laksh - end
+            $args = array(
+                'post_type' => 'st_' . esc_attr($service),
+                'post_status' => 'publish',
+                'author' => $author,
+                'posts_per_page' => 6,
+                'paged' => $paged,
+            );
             $query = new WP_Query($args);
 
             if ($query->have_posts()) {
