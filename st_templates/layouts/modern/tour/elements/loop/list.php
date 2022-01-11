@@ -15,7 +15,7 @@ $url=st_get_link_with_search(get_permalink(),array('check_in','check_out','durat
 // $date = $_GET["date"];
 // $adult_number = $_GET["adult_number"];
 // $child_number = $_GET["child_number"];
-// $author_id = $post->post_author;
+$author_id = $post->post_author;
 // $url = get_author_posts_url( $author_id ) . "?location_name=".$location_name."&location_id=".$location_id."&start=".$start."&end=".$end."&date=".$date."&adult_number=".$adult_number."&child_number=".$child_number;
 // laksh - end
 ?>
