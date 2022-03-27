@@ -26,13 +26,16 @@ if(!empty($header_bg))
     $inner_style = Assets::build_css("background-image: url(". esc_url($header_bg) .") !important;");
 ?>
     <div class="st-author-page">
-        <div class="banner <?php echo esc_attr($inner_style); ?>">
+
+    </br>
+
+        <!-- <div class="banner <?php echo esc_attr($inner_style); ?>">
             <div class="container">
                 <h1>
                     <?php echo __('Partner Page', 'traveler'); ?>
                 </h1>
             </div>
-        </div>
+        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
