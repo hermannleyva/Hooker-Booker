@@ -9105,29 +9105,3 @@ ul.st-list {
 }
 
 
-/*Captain Directory*/
-
-.captainAvatar {
-
-  margin: 15px 5px 10px 5px;
-
-}
-
-.captainContainer {
-
-  display:  flex;
-
-  border: 1px #5191FA dashed;
-
-  margin: 10px;
-
-}
-
-
-.captainDirectoryReview, .captainDirectoryReview li {
-
-  display: inline-block;
-
-  margin-right: 3px;
-
-}

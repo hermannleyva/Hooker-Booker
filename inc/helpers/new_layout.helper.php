@@ -603,6 +603,7 @@ class New_Layout_Helper {
         wp_enqueue_style('magnific-css', get_template_directory_uri() . '/v2/js/magnific-popup/magnific-popup.css');
         wp_enqueue_style('owlcarousel-css', get_template_directory_uri() . '/v2/js/owlcarousel/assets/owl.carousel.min.css');
         wp_enqueue_style('st-style-css', get_template_directory_uri() . '/v2/css/style.css');
+        wp_enqueue_style('st-style1-css', get_template_directory_uri() . '/v2/css/style1.css');
         wp_enqueue_style('affilate-css', get_template_directory_uri() . '/v2/css/affilate.css');
         wp_enqueue_style('affilate-h-css', get_template_directory_uri() . '/v2/css/affilate-h.css');
         wp_enqueue_style('search-result-css', get_template_directory_uri() . '/v2/css/search_result.css');
