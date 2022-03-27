@@ -49,7 +49,7 @@ switch ($menu_style) {
 
 			echo '<div class="captainContainer">';
 
-			echo '<div class="col-3 col-lg-3">';
+			echo '<div class="col-lg-3">';
 
 			echo '<a href="'.$authorLink.'"><div class="captainAvatar">'.st_get_profile_avatar($userId, 100).'</div></a>';
 
@@ -156,9 +156,9 @@ switch ($menu_style) {
 
 			echo '</div>';
 
-			echo '<div class="col-9 col-lg-9">';
+			echo '<div class="col-lg-9">';
 
-			echo '<a href="'.$authorLink.'"><h3>'.$user->display_name.'</h3></a>';
+			echo '<a  href="'.$authorLink.'"><h3 style="font-size:15px;">'.$user->display_name.'</h3></a>';
 
 		    echo '<strong>'.$postCount.' active trips</strong><br>';
 
