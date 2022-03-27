@@ -124,7 +124,7 @@ if(!empty($header_bg))
                         </ul>
                     </div>
 
-                    <div class="author-verify">
+                    <!-- <div class="author-verify">
                         <h4 class="verify-title"><?php esc_html_e('Verifications','traveler') ?></h4>
                         <ul>
                             <li>
@@ -199,7 +199,7 @@ if(!empty($header_bg))
                                 </span>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-9">
                     <?php if(isset($user_meta['st_bio'])){ ?>

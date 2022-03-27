@@ -17,26 +17,7 @@ $post_type_service = STInput::get('service', $arr_service[0]);
 							?>
 							<li class="<?php echo ($post_type_service == $v) ? 'active' : ''; ?>"><a
 									href="<?php echo esc_url($url); ?>"><?php
-									switch ($v) {
-										case "hotel":
-											echo __('Hotel', 'traveler');
-											break;
-										case "tours":
-											echo __('Tour', 'traveler');
-											break;
-										case "activity":
-											echo __('Activity', 'traveler');
-											break;
-										case "cars":
-											echo __('Car', 'traveler');
-											break;
-										case "rental":
-											echo __('Rental', 'traveler');
-											break;
-										case "flight":
-											echo __('Flight', 'traveler');
-											break;
-									}
+									echo __('Fishing Trip', 'traveler');
 
 									?></a></li>
 							<?php
@@ -202,7 +183,7 @@ $post_type_service = STInput::get('service', $arr_service[0]);
 						</div>
 						<?php
 					} else {
-						echo __('No reviews data', 'traveler');
+						echo __('No reviews yet!', 'traveler');
 					}
 					?>
 				</div>

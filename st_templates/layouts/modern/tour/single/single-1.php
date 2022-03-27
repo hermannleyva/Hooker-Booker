@@ -401,6 +401,121 @@ while (have_posts()): the_post();
                             </div>
 
                         </div>
+                        <div class="owner-info widget-box">
+
+<h4 class="heading"><?php echo __('Created by', 'traveler') ?></h4>
+
+<div class="media">
+
+    <div class="media-left">
+
+        <?php
+
+        $author_id = get_post_field('post_author', get_the_ID());
+
+        $userdata = get_userdata($author_id);
+
+        ?>
+
+        <a href="<?php echo get_author_posts_url($author_id); ?>">
+
+            <?php
+
+            echo st_get_profile_avatar($author_id, 60);
+
+            ?>
+
+        </a>
+
+    </div>
+
+    <div class="media-body">
+
+        <h4 class="media-heading"><a
+
+                    href="<?php echo get_author_posts_url($author_id); ?>"
+
+                    class="author-link"><?php echo TravelHelper::get_username($author_id); ?></a>
+
+        </h4>
+
+        <p><?php echo sprintf(__('Member Since %s', 'traveler'), date('Y', strtotime($userdata->user_registered))) ?></p>
+
+        <?php
+
+        $arr_service = STUser_f::getListServicesAuthor($userdata);
+
+        $review_data = STUser_f::getReviewsDataAuthor($arr_service, $userdata);
+
+        if (!empty($review_data)) {
+
+            $avg_rating = STUser_f::getAVGRatingAuthor($review_data);
+
+            ?>
+
+            <div class="author-review-box">
+
+                <div class="author-start-rating">
+
+                    <div class="stm-star-rating">
+
+                        <div class="inner">
+
+                            <div class="stm-star-rating-upper"
+
+                                 style="width:<?php echo (float)$avg_rating / 5 * 100; ?>%;"></div>
+
+                            <div class="stm-star-rating-lower"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p class="author-review-label">
+
+                    <?php printf(__('%d Reviews', 'traveler'), count($review_data)); ?>
+
+                </p>
+
+            </div>
+
+        <?php }
+
+        ?>
+
+    </div>
+
+</div>
+
+<?php
+
+    $enable_inbox = st()->get_option('enable_inbox');
+
+    if($enable_inbox === 'on'){ ?>
+
+        <div class="st_ask_question">
+
+            <?php
+
+                if (!is_user_logged_in()) {?>
+
+                <a href="" class="login btn btn-primary upper mt5" data-toggle="modal" data-target="#st-login-form"><?php echo __('Ask a Question', 'traveler');?></a>
+
+            <?php } else{?>
+
+                <a href="" id="btn-send-message-owner" class="btn-send-message-owner btn btn-primary upper mt5" data-id="<?php echo get_the_ID();?>"><?php echo __('Ask a Question', 'traveler');?></a>
+
+            <?php }?>
+
+        </div>
+
+<?php }?>
+
+</div>
+
+            </br>
 
 
 
@@ -2327,7 +2442,7 @@ while (have_posts()): the_post();
                                     ?>
 
 
-
+<!-- 
                                 <div class="owner-info widget-box">
 
                                     <h4 class="heading"><?php echo __('Organized by', 'traveler') ?></h4>
@@ -2440,7 +2555,7 @@ while (have_posts()): the_post();
 
                                     <?php }?>
 
-                                </div>
+                                </div> -->
 
                                  <?php } ?>
 

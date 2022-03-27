@@ -16,26 +16,7 @@ if (!empty($arr_service)) { ?>
                 <li class="<?php echo ($active_tab == $v) ? 'active' : ''; ?>"><a
                         href="<?php echo esc_url($url); ?>"
                         aria-expanded="true"><?php
-                        switch ($v) {
-                            case "hotel":
-                                echo __('Hotels', 'traveler');
-                                break;
-                            case "tours":
-                                echo __('Tours', 'traveler');
-                                break;
-                            case "activity":
-                                echo __('Activity', 'traveler');
-                                break;
-                            case "cars":
-                                echo __('Car', 'traveler');
-                                break;
-                            case "rental":
-                                echo __('Rental', 'traveler');
-                                break;
-                            case "flight":
-                                echo __('Flight', 'traveler');
-                                break;
-                        }
+                        echo __('Fishing Trips', 'traveler');
 
                         ?></a></li>
                 <?php
