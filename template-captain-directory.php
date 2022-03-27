@@ -158,7 +158,7 @@ switch ($menu_style) {
 
 			echo '<div class="col-lg-9">';
 
-			echo '<a  href="'.$authorLink.'"><h3 style="font-size:15px;">'.$user->display_name.'</h3></a>';
+			echo '<a  href="'.$authorLink.'"><h3>'.$user->display_name.'</h3></a>';
 
 		    echo '<strong>'.$postCount.' active trips</strong><br>';
 
