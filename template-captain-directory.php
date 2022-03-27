@@ -188,7 +188,6 @@ switch ($menu_style) {
 
 		echo '</div>';
 
-		var_dump($users);
 
     	?>
 

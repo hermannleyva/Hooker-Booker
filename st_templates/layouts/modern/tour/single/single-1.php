@@ -403,7 +403,7 @@ while (have_posts()): the_post();
                         </div>
                         <div class="owner-info widget-box">
 
-<h4 class="heading"><?php echo __('Created by', 'traveler') ?></h4>
+<!-- <h4 class="heading"><?php echo __('Created by', 'traveler') ?></h4> -->
 
 <div class="media">
 
@@ -440,6 +440,14 @@ while (have_posts()): the_post();
         </h4>
 
         <p><?php echo sprintf(__('Member Since %s', 'traveler'), date('Y', strtotime($userdata->user_registered))) ?></p>
+        
+        <p class="media-heading"><a
+
+href="<?php echo get_author_posts_url($author_id); ?>"
+
+class="">View more trips from this Captain</a>
+
+                                </p>
 
         <?php
 
@@ -652,7 +660,7 @@ while (have_posts()): the_post();
 
                                 </div>
 
-                                <div class="col-xs-6 col-lg-3">
+                                <!-- <div class="col-xs-6 col-lg-3">
 
                                     <div class="item">
 
@@ -700,7 +708,7 @@ while (have_posts()): the_post();
 
                                     </div>
 
-                                </div>
+                                </div> -->
 
                             </div>
 
