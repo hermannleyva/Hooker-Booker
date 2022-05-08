@@ -2903,7 +2903,7 @@ if (!class_exists('STTour')) {
 
             } else {
 
-                $p2 = __('Could not find any fishing trips', 'traveler');
+                $p2 = __("We don't have any trips in this area yet.", 'traveler');
 
             }
 
