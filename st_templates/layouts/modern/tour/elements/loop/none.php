@@ -4,7 +4,7 @@
         echo '<h1>Thank you!  Your request was sent to our team.</h1>';
         echo '<p>We will be contacting you in a few days.</p>';
 
-        $to = "fishing@hookerbooker.com";
+        $to = "fishing@thehookerbooker.com";
         $subject = "Looking for trip";
         $body = $_POST['your_message'];
         $headers = array('Content-Type: text/html; charset=UTF-8');
