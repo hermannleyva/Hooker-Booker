@@ -2,7 +2,7 @@
 
     if (!empty($_POST['your_name'])) {
         echo '<h1>Thank you!  Your request was sent to our team.</h1>';
-        echo '<p>We will be contacting you in a few days.</p>';
+        echo '<p>We will be contacting you in a few days. You can click <a href="https://www.thehookerbooker.com/results/">here</a> to see all the available trips we in other areas.</p>';
 
         $to = "fishing@thehookerbooker.com";
         $subject = "Looking for trip";
